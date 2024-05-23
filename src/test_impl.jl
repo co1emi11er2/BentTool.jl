@@ -91,7 +91,7 @@ bk_span = SimpleSpan(
     120ft
 )
 
-unit = SimpleUnit(
+unit = SimpleUnit{RectangularBentCap}(
     bk_span,
     fd_span,
     bent,
@@ -101,3 +101,4 @@ unit = SimpleUnit(
     true,
     40mph
 )
+

@@ -18,5 +18,6 @@ include("Slab.jl")
 include("BentCap.jl")
 include("Girder.jl")
 include("Span.jl")
+include("test_impl.jl")
 
 end
