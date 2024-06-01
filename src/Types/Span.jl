@@ -3,7 +3,7 @@
 
 abstract type Span end
 
-struct SimpleSpan <: Span
+@with_kw struct SimpleSpan <: Span
     slab::Slab
     girders::Girder
     brg::BearingPad
@@ -15,7 +15,7 @@ end
 
 abstract type BridgeUnit end
 
-struct SimpleUnit{T<:BentCap}
+@with_kw struct SimpleUnit{T<:BentCap}
     bk::SimpleSpan
     fd::SimpleSpan
     bent::T
