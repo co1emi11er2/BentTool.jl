@@ -23,6 +23,31 @@ end
     weight::float_plf
 end
 
+"""
+    Rail(type)
+
+Will construct a Rail object based on the type.
+"""
+function Rail(type)
+    # initialize dataframe
+    data_dir = joinpath(@__DIR__, "..", "..", "data", "Rails.csv") #TODO: fix data directory
+    df = CSV.read(data_dir, DataFrame)
+
+    # filter by type
+    rail = @chain df begin
+        @filter(type==!!type)
+        first
+    end
+
+    # return a rail object
+    Rail(
+        rail.type, 
+        rail.height_in*inch, 
+        rail.width_ft*ft, 
+        rail.weight_plf*plf)
+end
+
+
 @with_kw struct RailInfo
     dist_outside_to_all::Bool
     rail_left::Rail

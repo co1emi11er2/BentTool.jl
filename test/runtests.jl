@@ -1,6 +1,4 @@
-using BentTool
+using BentTool, StructuralUnits
 using Test
 
-@testset "BentTool.jl" begin
-    # Write your tests here.
-end
+@testset "Rail:     " begin include("Types/Slab.jl") end

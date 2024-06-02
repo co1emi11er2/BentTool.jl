@@ -37,3 +37,13 @@ end
     width::float_inch
     height::float_inch
 end
+
+@with_kw struct GirderInfo
+    girder::Girder
+    n_girders::Int8
+    spacing::Vector{float_ft}
+    x_points::Matrix{float_ft}
+    y_points::Matrix{float_ft}
+    brg::BearingPad
+    pdstl::Pedestal
+end
