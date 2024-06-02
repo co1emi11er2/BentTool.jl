@@ -1,76 +1,80 @@
-# slab = Slab(
-#     width=40ft,
-#     thickness=8.5inch,
-#     fws_thickness=0inch,
-#     fws_density=0.15kcf,
-#     cross_slope=0.02,
-# )
+import BentTool: Slab, PGL, Rail, RailInfo, Sidewalk
+import BentTool: Girder, BearingPad, Pedestal, GirderInfo
+import BentTool: RectangularBentCap, InvTBentCap
+import BentTool: Bar, BarsAInfo, BarsBInfo, BarsSInfo, BarsTInfo
+import BentTool: SimpleSpan, BridgeUnit
 
-# girder = Girder(
-#     type="Tx54",
-#     haunch_height=2inch,
-#     depth=54inch,
-#     bott_flange_width=32inch,
-# )
+slab = Slab(
+    width=40ft,
+    thickness=8.5inch,
+    fws_thickness=0inch,
+    fws_density=0.15kcf,
+    cross_slope=0.02,
+)
 
-# brg = BearingPad(
-#     width=3ft,
-#     height=2.75inch,
-#     distance=12inch,
-# )
+girder = Girder(
+    type="Tx54",
+    haunch_height=2inch,
+    depth=54inch,
+    bott_flange_width=32inch,
+)
 
-# pdst = Pedestal(
-#     width=3ft,
-#     height=1.5inch,
-# )
+brg = BearingPad(
+    width=3ft,
+    height=2.75inch,
+    distance=12inch,
+)
 
-# pgl = PGL(
-#     radius=0ft,
-#     offset=-23ft,
-# )
+pdst = Pedestal(
+    width=3ft,
+    height=1.5inch,
+)
 
-# rail = Rail("SSTR")
+pgl = PGL(
+    radius=0ft,
+    offset=-23ft,
+)
 
-# rail_info = RailInfo(
-#     dist_outside_to_all=true,
-#     rail_left=rail,
-#     rail_right=rail,
-#     rail_third=rail,
-#     dist_bk_start=2,
-#     dist_bk_end=4,
-#     dist_fd_start=2,
-#     dist_fd_end=5,
-# )
+rail = Rail("SSTR")
 
-# sw = Sidewalk(
-#     width=0ft,
-#     thickness=0.5ft,
-#     density=0.15kcf,
-#     dist_bk_start=1,
-#     dist_bk_end=4,
-#     dist_fd_start=1,
-#     dist_fd_end=4,
-# )
+rail_info = RailInfo(
+    dist_outside_to_all=true,
+    rail_left=rail,
+    rail_right=rail,
+    rail_third=rail,
+    dist_bk_start=2,
+    dist_bk_end=4,
+    dist_fd_start=2,
+    dist_fd_end=5,
+)
 
-# bent = RectangularBentCap(
-#     density=0.15kcf,
-#     fc=3.6ksi,
-#     fy=60ksi,
-#     exposure="Class 2",
-#     skew=0°,
-#     length=48ft,
-#     bk_bm1_to_cap_end=2ft,
-#     fd_bm1_to_cap_end=2ft,
-#     depth=60inch,
-#     width=54inch,
-#     offset_to_leveling_pad=0inch,
-# )
+sw = Sidewalk(
+    width=0ft,
+    thickness=0.5ft,
+    density=0.15kcf,
+    dist_bk_start=1,
+    dist_bk_end=4,
+    dist_fd_start=1,
+    dist_fd_end=4,
+)
+
+bent = RectangularBentCap(
+    density=0.15kcf,
+    fc=3.6ksi,
+    fy=60ksi,
+    exposure="Class 2",
+    skew=0°,
+    length=48ft,
+    bk_bm1_to_cap_end=2ft,
+    fd_bm1_to_cap_end=2ft,
+    depth=60inch,
+    width=54inch,
+    offset_to_leveling_pad=0inch,
+)
 
 # fd_span = SimpleSpan(
 #     slab=slab,
-#     girders=girder,
-#     brg=brg,
-#     pdstl=pdst,
+#     girder_info=girder,
 #     osho_left=3ft,
 #     osho_right=3ft,
 #     length=100ft
@@ -79,8 +83,6 @@
 # bk_span = SimpleSpan(
 #     slab=slab,
 #     girders=girder,
-#     brg=brg,
-#     pdstl=pdst,
 #     osho_left=3ft,
 #     osho_right=3ft,
 #     length=120ft

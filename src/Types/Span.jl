@@ -5,13 +5,13 @@ abstract type Span end
 
 @with_kw struct SimpleSpan <: Span
     slab::Slab
-    girders::Girder
-    brg::BearingPad
-    pdstl::Pedestal
+    girder_info::GirderInfo
     osho_left::float_ft
     osho_right::float_ft
     length::float_ft
 end
+
+# SimpleSpan(;slab, osho_left, osho_right, length, girder)
 
 abstract type BridgeUnit end
 

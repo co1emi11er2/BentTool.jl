@@ -23,14 +23,11 @@ const float_ksi = typeof(1.0ksi)
 const float_deg = typeof(1.0°)
 const float_inch2 = typeof(1.0inch^2)
 
-export @chain
+# export @chain
 # Import Types
 include("Types/Slab.jl")
 include("Types/BentCap.jl")
 include("Types/Girder.jl")
 include("Types/Span.jl")
-
-
-include("test_impl.jl")
 
 end
