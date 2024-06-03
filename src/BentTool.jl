@@ -9,6 +9,8 @@ using StructuralUnits
 
 # Directories
 # const rail_csv_dir = joinpath(@__DIR__, "..", "data")
+projectdir(parts...) = normpath(joinpath(@__DIR__, "..", parts...))
+datadir(parts...) = normpath(joinpath(@__DIR__, "..", "data", parts...))
 
 
 # Constant Units

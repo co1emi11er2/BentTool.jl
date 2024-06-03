@@ -30,7 +30,7 @@ Will construct a Rail object based on the type.
 """
 function Rail(type)
     # initialize dataframe
-    data_dir = joinpath(@__DIR__, "..", "..", "data", "Rails.csv") #TODO: fix data directory
+    data_dir = datadir("Rails.csv")
     df = CSV.read(data_dir, DataFrame)
 
     # filter by type
