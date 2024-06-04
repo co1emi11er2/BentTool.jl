@@ -27,6 +27,7 @@ const float_inch2 = typeof(1.0inch^2)
 
 # export @chain
 # Import Types
+include("Utils.jl")
 include("Types/Slab.jl")
 include("Types/BentCap.jl")
 include("Types/Girder.jl")

@@ -1,4 +1,4 @@
-﻿Type,Depth (in),Wt (plf),Brg Seat Width,Bot Flange,Dist from end of bm to face of inv-tee or CL bent
+﻿type,depth_in,weight_plf,brg_width,bott_flange_width,end_gap_in
 A,28,287,2,16,2
 B,34,375,2,18,2
 C,40,516,2,22,2
