@@ -1,6 +1,6 @@
 
 "List of different types of girders that can be used in the BentTool package"
-@enumx GirderTypes begin
+@enumx GirderType begin
     Tx28
     Tx34
     Tx40
@@ -18,28 +18,76 @@
 end
 
 
+"""
+    string(girder::GirderType.T)
+
+If girder is of type *GirderType.T*, the function will output the corresponding girder designation in string format.
+"""
+function Base.string(girder::GirderType.T)
+    @match girder begin
+        $(GirderType.Tx28) => "Tx28"
+        $(GirderType.Tx34) => "Tx34"
+        $(GirderType.Tx40) => "Tx40"
+        $(GirderType.Tx46) => "Tx46"
+        $(GirderType.Tx54) => "Tx54"
+        $(GirderType.Tx62) => "Tx62"
+        $(GirderType.Tx70) => "Tx70"
+        $(GirderType.U40) => "U40"
+        $(GirderType.U54) => "U54"
+        $(GirderType.IV) => "IV"
+        $(GirderType.A) => "A"
+        $(GirderType.B) => "B"
+        $(GirderType.C) => "C"
+        $(GirderType.Type54) => "Type54"
+        _ => error("Girder type: $girder not found")
+    end
+end
+
+
+"""
+    girder_type(girder::String)
+
+If girder is of type *Sting*, the function will output the corresponding girder designation in enum format.
+"""
+function girder_type(girder::String)
+    @match girder begin
+        "Tx28" => GirderType.Tx28
+        "Tx34" => GirderType.Tx34
+        "Tx40" => GirderType.Tx40
+        "Tx46" => GirderType.Tx46
+        "Tx54" => GirderType.Tx54
+        "Tx62" => GirderType.Tx62
+        "Tx70" => GirderType.Tx70
+        "U40" => GirderType.U40
+        "U54" => GirderType.U54
+        "IV" => GirderType.IV
+        "A" => GirderType.A
+        "B" => GirderType.B
+        "C" => GirderType.C
+        "Type54" => GirderType.Type54
+        _ => error("Girder type: $girder not found")
+    end
+end
 
 
 @with_kw struct Girder
-    type::String
+    type::GirderType.T
     haunch_height::float_inch
     depth::float_inch
     bott_flange_width::float_inch
 end
 
-function Girder(type; haunch_height = 3inch)
-    df = CSV.read(datadir("GirderInfo.csv", DataFrame))
-
-    girder = @chain df begin
-        @filter(type==!!type)
-        first
-    end
+function Girder(type::GirderType.T; haunch_height = 3.0inch)
+    csv_file_name = "GirderInfo.csv"
+    lookup_col_name = :type
+    lookup_value = string(type)
+    girder = import_data(lookup_value, lookup_col_name, csv_file_name)
 
     return Girder(
-        type = girder.type,
+        type = type,
         haunch_height = haunch_height,
-        depth = girder.depth_in,
-        bott_flange_width = girder.bott_flange_width
+        depth = girder.depth_in * inch,
+        bott_flange_width = girder.bott_flange_width * inch
     )
 end
 
@@ -84,18 +132,8 @@ function init_girder_info(;type::String, n_girders, osho_left, spacing, haunch_h
     df = CSV.read(datadir("GirderInfo.csv"), DataFrame)
 
     # find girder info for specified type
-    g = @chain df begin
-        @filter(type==!!type)
-        first
-    end
-
-    # construct girder
-    @show girder = Girder(
-        type = g.type,
-        haunch_height = haunch_height,
-        depth = g.depth_in*inch,
-        bott_flange_width = g.bott_flange_width*inch
-    )
+    type = girder_type(type)
+    girder = Girder(type; haunch_height = haunch_height)
 
     # construct bearing
     @show brg = BearingPad(

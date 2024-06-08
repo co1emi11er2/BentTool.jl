@@ -30,14 +30,10 @@ Will construct a Rail object based on the type.
 """
 function Rail(type)
     # initialize dataframe
-    data_dir = datadir("Rails.csv")
-    df = CSV.read(data_dir, DataFrame)
-
-    # filter by type
-    rail = @chain df begin
-        @filter(type==!!type)
-        first
-    end
+    csv_file_name = "Rails.csv"
+    lookup_col_name = :type
+    lookup_value = string(type)
+    rail = import_data(lookup_value, lookup_col_name, csv_file_name)
 
     # return a rail object
     Rail(

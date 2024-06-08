@@ -2,7 +2,8 @@ module BentTool
 
 # Package Imports
 using CSV
-using DataFrames, Tidier
+using DataFrames, DataFramesMeta
+using Match
 using EnumX
 using Parameters
 using StructuralUnits
@@ -29,7 +30,9 @@ const float_inch2 = typeof(1.0inch^2)
 # Import Types
 include("Utils.jl")
 include("Types/Slab.jl")
-include("Types/BentCap.jl")
+include("Types/Bent Cap/Bar.jl")
+include("Types/Bent Cap/Column.jl")
+include("Types/Bent Cap/BentCap.jl")
 include("Types/Girder.jl")
 include("Types/Span.jl")
 

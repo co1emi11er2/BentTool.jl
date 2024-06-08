@@ -1,6 +1,6 @@
 abstract type BentCap end
 
-@with_kw struct RectangularBentCap <: BentCap
+@with_kw struct RectangularBentCap{T<:ColumnInfo} <: BentCap
     density::float_pcf = 150.0pcf
     fc::float_ksi = 4.0ksi
     fy::float_ksi = 60.0ksi
@@ -12,9 +12,14 @@ abstract type BentCap end
     depth::float_inch
     width::float_inch
     offset_to_leveling_pad::float_inch = 12.0inch
+    bars_a_info::BarsAInfo
+    bars_b_info::BarsBInfo
+    bars_s_info::BarsSInfo
+    bars_t_info::BarsTInfo
+    column_info::T
 end
 
-@with_kw struct InvTBentCap <: BentCap
+@with_kw struct InvTBentCap{T<:ColumnInfo} <: BentCap
     density::float_pcf = 150.0pcf
     fc::float_ksi = 4.0ksi
     fy::float_ksi = 60.0ksi
@@ -30,38 +35,12 @@ end
     offset_to_leveling_pad::float_inch = 12.0inch
     earwall_left::float_ft
     earwall_right::float_ft
+    bars_a_info::BarsAInfo
+    bars_b_info::BarsBInfo
+    bars_s_info::BarsSInfo
+    bars_t_info::BarsTInfo
+    column_info::T
 end
 
-@with_kw struct Bar
-    size::Int8
-    area::float_inch2
-    weight::float_plf
-    diameter::float_inch
-end
 
-@with_kw struct BarsAInfo
-    size::Int8
-    dist_btwn_rows::float_inch
-    n_row1::Int8
-    n_row2::Int8
-    n_row3::Int8
-end
-
-@with_kw struct BarsBInfo
-    size::Int8
-    dist_btwn_rows::float_inch
-    n_row1::Int8
-    n_row2::Int8
-    n_row3::Int8
-end
-
-@with_kw struct BarsSInfo
-    size::Int8
-    n_bundle::Int8
-end
-
-@with_kw struct BarsTInfo
-    size::Int8
-    n_bars_face::Int8
-end
 

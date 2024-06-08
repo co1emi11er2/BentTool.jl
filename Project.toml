@@ -6,10 +6,11 @@ version = "1.0.0-DEV"
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+DataFramesMeta = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
 EnumX = "4e289a0a-7415-4d19-859d-a7e5c4648b56"
+Match = "7eb4fadd-790c-5f42-8a69-bfa0b872bfbf"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
 StructuralUnits = "ec81c399-378c-4a82-baa1-80fb2fc85b6c"
-Tidier = "f0413319-3358-4bb0-8e7c-0c83523a93bd"
 
 [compat]
 julia = "1.10"
