@@ -119,29 +119,31 @@ end
 Given the girder type, number of girders, width of slab, and spacing of girders, a GirderInfo object is constructed.
 
 """
-function init_girder_info(;type::String, n_girders, osho_left, spacing, haunch_height)
+function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, haunch_height)
     
+    girder = Girder(type; haunch_height = haunch_height)
 
     # calculate girder points
     df = CSV.read(datadir("GirderGeometries.csv"), DataFrame)
-
-    x_points = (df[!, "$(type)_x"]*ft) .+ sequence(1, n_girders, osho_left, spacing)
+    x_offset = (max(df[!, "$(type)_x"]...) - min(df[!, "$(type)_x"]...))/2*ft
+    cuml_spacing = cumsum([osho_left, spacing...])
+    x_points = (df[!, "$(type)_x"]*ft) .+ cuml_spacing' .- x_offset
     y_points = (df[!, "$(type)_y"]*ft) .+ sequence(1, n_girders, 0ft, 0ft)
 
     # initialize other girder info
     df = CSV.read(datadir("GirderInfo.csv"), DataFrame)
 
     # find girder info for specified type
-    type = girder_type(type)
-    girder = Girder(type; haunch_height = haunch_height)
-
+    # type = girder_type(type)
+    
+    g = import_data(string(type), :type, "GirderInfo.csv")
     # construct bearing
-    @show brg = BearingPad(
+    brg = BearingPad(
         width = g.brg_width*inch
     )
 
     # construct pedestal
-    @show pdstl = Pedestal(
+    pdstl = Pedestal(
         width = g.bott_flange_width*inch + 4inch
     )
 

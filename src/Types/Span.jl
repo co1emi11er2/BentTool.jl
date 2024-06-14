@@ -17,15 +17,15 @@ end
 Given the girder type, number of girders, width of slab, spacing of girders, and the length of span, a SimpleSpan object is constructed.
 
 """
-function init_simple_span(;width, length, girder_type::String, n_girders::Int, spacing, haunch_height=3inch)
+function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing = (), haunch_height=3inch)
 
     # set spacing to proper size
     if size(spacing) == ()
-        spacing = sequence(n_girders-1, 1, spacing, 0.0ft)
+        spacing = vec(sequence(n_girders-1, 1, spacing, 0.0ft))
     elseif size(spacing) != (n_girders-1,)
         error("Incorrect size of `spacing`. Got $(size(spacing)), expected $((n_girders-1,))")
     end
-    total_spacing = spacing*(n_girders-1)
+    total_spacing = sum(spacing)
     osho = (width - total_spacing)/2
     slab = Slab(width=width)
     girder_info = init_girder_info(
@@ -59,4 +59,21 @@ end #TODO: This is where I left off. How will I distinguish single column vs mul
 
 
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
+function Plots.plot(s::SimpleSpan)
+    plot(s.girder_info.x_points, s.girder_info.y_points; aspectratio=:equal, lc=:gray, legend=:none)
+    x = [0.0ft, s.slab.width, s.slab.width, 0.0ft, 0.0ft]
+    y = [0.0inch, 0.0inch, s.slab.thickness, s.slab.thickness, 0.0inch]
+    plot!(x, y; aspectratio=:equal, lc=:gray, legend=:none)
+end
 
+function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
+    plt1 = plot(bk)
+    plt2 = plot(fd)
+    plot(plt1, plt2, layout = grid(2, 1))
+end
+
+function Plots.plot(u::SimpleUnit)
+    plt1 = plot(u.bk)
+    plt2 = plot(u.fd)
+    plot(plt1, plt2, layout = grid(2, 1))
+end
