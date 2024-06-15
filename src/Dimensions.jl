@@ -65,5 +65,5 @@ function plot_h_dimensions!(
     n = length.(annos)
     blanks = vcat("█".^n #=.* "█"=#)
     annotate!(x_lbls, y_lbls, text.(blanks,:white, #=fntcm,=# fntsz))
-    annotate!(x_lbls, y_lbls, text.(annos, #=fntcm,=# fntsz))
+    annotate!(x_lbls, y_lbls, text.(annos, :grey, #=fntcm,=# fntsz))
 end
