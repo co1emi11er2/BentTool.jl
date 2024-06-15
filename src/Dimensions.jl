@@ -60,7 +60,8 @@ function plot_h_dimensions!(
     fntsz = 4
     x_lbls = find_label_points(x_dims)
     y_lbls = find_label_points(y_dims)
-    annos = string.(find_spacing(x_dims))
+    spa = round.(T, find_spacing(x_dims), digits=2)
+    annos = string.(spa)
     n = length.(annos)
     blanks = vcat("█".^n #=.* "█"=#)
     annotate!(x_lbls, y_lbls, text.(blanks,:white, #=fntcm,=# fntsz))
