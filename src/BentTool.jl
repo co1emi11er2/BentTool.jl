@@ -7,7 +7,12 @@ using Match
 using EnumX
 using Parameters
 using StructuralUnits
+using Plots
 
+
+export GirderType, Girder, BearingPad, Pedestal, GirderInfo, init_girder_info
+export Slab, PGL, Rail, RailInfo, Sidewalk
+export SimpleSpan, init_simple_span, SimpleUnit, plot
 # Directories
 # const rail_csv_dir = joinpath(@__DIR__, "..", "data")
 projectdir(parts...) = normpath(joinpath(@__DIR__, "..", parts...))
@@ -29,6 +34,7 @@ const float_inch2 = typeof(1.0inch^2)
 # export @chain
 # Import Types
 include("Utils.jl")
+include("Dimensions.jl")
 include("Types/Slab.jl")
 include("Types/Bent Cap/Bar.jl")
 include("Types/Bent Cap/Column.jl")

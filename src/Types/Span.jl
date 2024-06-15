@@ -60,15 +60,37 @@ end #TODO: This is where I left off. How will I distinguish single column vs mul
 
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
 function Plots.plot(s::SimpleSpan)
-    plot(s.girder_info.x_points, s.girder_info.y_points; aspectratio=:equal, lc=:gray, legend=:none)
+    # plot girders
+    plot(
+        s.girder_info.x_points, 
+        s.girder_info.y_points; 
+        aspectratio=:equal, 
+        lc=:black, 
+        legend=:none,
+        xlabel="",
+        ylabel="",
+        )
+
+    # plot slab
     x = [0.0ft, s.slab.width, s.slab.width, 0.0ft, 0.0ft]
     y = [0.0inch, 0.0inch, s.slab.thickness, s.slab.thickness, 0.0inch]
-    plot!(x, y; aspectratio=:equal, lc=:gray, legend=:none)
+    plot!(
+        x, 
+        y; 
+        aspectratio=:equal, 
+        lc=:black, 
+        legend=:none,
+        )
+
+    # plot dimensions of girders
+    plot_h_dimensions!(s.girder_info.x_points, s.girder_info.y_points; error=3inch)
 end
 
 function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
     plt1 = plot(bk)
+    title!("Back Span")
     plt2 = plot(fd)
+    title!("Forward Span")
     plot(plt1, plt2, layout = grid(2, 1))
 end
 
