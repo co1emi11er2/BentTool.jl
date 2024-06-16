@@ -1,5 +1,5 @@
 """
-    sequence(rows::Int, columns::Int=1, start=1.0, step=1.0)
+    sequence(rows::Int, columns::Int, start=1.0, step=1.0)
 
 The sequence function allows you to generate a list of sequential numbers in an array, such as 1, 2, 3, 4.
 
@@ -9,7 +9,8 @@ The sequence function allows you to generate a list of sequential numbers in an 
 - `start` - starting point of sequence
 - `step` - stepping increment in sequence
 """
-function sequence(rows::Int, columns::Int=1, start=1.0, step=1.0)
+function sequence(rows::Int, columns::Int, start=1.0, step=1.0)
+    # initialize array and step through
     a = ones(Float64, rows, columns) * start
     iter = 0.0 * start
     for row in 1:rows
@@ -18,7 +19,31 @@ function sequence(rows::Int, columns::Int=1, start=1.0, step=1.0)
             iter += step
         end
     end
-    a
+    
+    return a
+end
+
+
+"""
+    sequence(rows::Int, start=1.0, step=1.0)
+
+The sequence function allows you to generate a list of sequential numbers in an array, such as 1, 2, 3, 4.
+
+# Parameters
+- `rows`::Int - number of rows in the matrix
+- `start` - starting point of sequence
+- `step` - stepping increment in sequence
+"""
+function sequence(rows::Int, start=1.0, step=1.0)
+    # initialize array and step through
+    a = ones(Float64, rows) * start
+    iter = 0.0 * start
+    for row in 1:rows
+        a[row] += iter
+        iter += step
+    end
+    
+    return a
 end
 
 
