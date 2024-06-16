@@ -1,5 +1,3 @@
-import Statistics: middle
-
 
 """
     find_middle(xs::AbstractArray{T}) where T

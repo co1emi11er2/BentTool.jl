@@ -114,9 +114,9 @@ end
 
 
 """
-    GirderInfo(;type, n_girders, width, spacing)
+    init_girder_info(;type, n_girders, osho_left, spacing, haunch_height)
 
-Given the girder type, number of girders, width of slab, and spacing of girders, a GirderInfo object is constructed.
+Given the girder type, number of girders, osho_left, spacing of girders, and haunch height, a GirderInfo object is constructed.
 
 """
 function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, haunch_height)

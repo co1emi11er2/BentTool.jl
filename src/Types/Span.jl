@@ -12,12 +12,12 @@ abstract type Span end
 end
 
 """
-    SimpleSpan(;width, length, girder_type, n_girders, spacing)
+    init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
 
-Given the girder type, number of girders, width of slab, spacing of girders, and the length of span, a SimpleSpan object is constructed.
+Given the slab width, span length, girder type, number of girders, spacing of girders, and the haunch height, a SimpleSpan object is constructed.
 
 """
-function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing = (), haunch_height=3inch)
+function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
 
     # set spacing to proper size
     if size(spacing) == ()
