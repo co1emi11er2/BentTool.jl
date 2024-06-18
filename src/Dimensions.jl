@@ -145,8 +145,8 @@ end
 
 """
     plot_h_dimensions!(
-    xs::AbstractArray{T}, 
-    ys::AbstractArray{S}; 
+    xs::Vector{Vector{T}}, 
+    ys::Vector{Vector{S}};  
     error = 1, # yerror bar length (both sides)
     lc = :grey, # line color
     offset = zero(S), # offset in y direction
@@ -156,14 +156,15 @@ Plots the dimensions of a linearly spaced set of objects with points `xs` and `y
 Each column in `xs` and `ys` represents a new object.
 """
 function plot_h_dimensions!(
-    xs::AbstractArray{T}, 
-    ys::AbstractArray{S}; 
+    xs::Vector{Vector{T}}, 
+    ys::Vector{Vector{S}}; 
     error = 1, 
     lc = :grey, 
     offset = zero(S),
     ) where T where S
 
-    x_dims, y_dims = find_middle(xs, ys)
+    # plot dimension lines
+    x_dims, y_dims = middle.(xs), middle.(ys)
     y_dims = y_dims .+ offset
     plot!(x_dims, y_dims; yerror=error, lc, ms=0inch, mc=lc)
 
