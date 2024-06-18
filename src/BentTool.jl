@@ -9,6 +9,7 @@ using Parameters
 import Statistics: middle
 using StructuralUnits
 using Plots
+using GLMakie
 
 # Package Exports
 export GirderType, Girder, BearingPad, Pedestal, GirderInfo, init_girder_info

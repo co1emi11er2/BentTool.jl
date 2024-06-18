@@ -106,8 +106,8 @@ end
     girder::Girder
     n_girders::Int8
     spacing::Vector{float_ft}
-    x_points::Matrix{float_ft}
-    y_points::Matrix{float_ft}
+    x_points::Vector{Vector{float_ft}}
+    y_points::Vector{Vector{float_ft}}
     brg::BearingPad
     pdstl::Pedestal
 end
@@ -129,6 +129,10 @@ function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, ha
     cuml_spacing = cumsum([osho_left, spacing...])
     x_points = (df[!, "$(type)_x"]*ft) .+ cuml_spacing' .- x_offset
     y_points = (df[!, "$(type)_y"]*ft) .+ sequence(1, n_girders, 0ft, 0ft)
+
+    # convert points to vector of vectors
+    x_points = Vector{eltype(x_points)}[eachcol(x_points)...]
+    y_points = Vector{eltype(y_points)}[eachcol(y_points)...]
 
     # initialize other girder info
     df = CSV.read(datadir("GirderInfo.csv"), DataFrame)
