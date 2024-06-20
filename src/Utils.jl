@@ -67,10 +67,3 @@ function import_data(lookup_value, lookup_col_name::Symbol, csv_file_name::Strin
     end
     return data
 end
-
-
-convert_ft(x::Real) = x * ft
-convert_ft(x::String) = parse(Float64, x) * ft
-function convert_ft(x) 
-    ErrorException("Incorrect Type. Expected float, int, or string, got $(typeof(x))")
-end

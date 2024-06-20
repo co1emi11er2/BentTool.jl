@@ -23,54 +23,12 @@ end
 
 
 """
-    string(girder::GirderType.T)
-
-If girder is of type *GirderType.T*, the function will output the corresponding girder designation in string format.
-"""
-function Base.string(girder::GirderType.T)
-    @match girder begin
-        $(GirderType.Tx28) => "Tx28"
-        $(GirderType.Tx34) => "Tx34"
-        $(GirderType.Tx40) => "Tx40"
-        $(GirderType.Tx46) => "Tx46"
-        $(GirderType.Tx54) => "Tx54"
-        $(GirderType.Tx62) => "Tx62"
-        $(GirderType.Tx70) => "Tx70"
-        $(GirderType.U40) => "U40"
-        $(GirderType.U54) => "U54"
-        $(GirderType.IV) => "IV"
-        $(GirderType.A) => "A"
-        $(GirderType.B) => "B"
-        $(GirderType.C) => "C"
-        $(GirderType.Type54) => "Type54"
-        _ => error("Girder type: $girder not found")
-    end
-end
-
-
-"""
     girder_type(girder::String)
 
 If girder is of type *Sting*, the function will output the corresponding girder designation in enum format.
 """
 function girder_type(girder::String)
-    @match girder begin
-        "Tx28" => GirderType.Tx28
-        "Tx34" => GirderType.Tx34
-        "Tx40" => GirderType.Tx40
-        "Tx46" => GirderType.Tx46
-        "Tx54" => GirderType.Tx54
-        "Tx62" => GirderType.Tx62
-        "Tx70" => GirderType.Tx70
-        "U40" => GirderType.U40
-        "U54" => GirderType.U54
-        "IV" => GirderType.IV
-        "A" => GirderType.A
-        "B" => GirderType.B
-        "C" => GirderType.C
-        "Type54" => GirderType.Type54
-        _ => error("Girder type: $girder not found")
-    end
+    getproperty(GirderType, Symbol(girder))
 end
 
 
