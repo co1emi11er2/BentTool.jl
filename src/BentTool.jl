@@ -12,7 +12,7 @@ using Plots
 
 # Package Exports
 export GirderType, Girder, BearingPad, Pedestal, GirderInfo, init_girder_info
-export Slab, PGL, Rail, RailInfo, Sidewalk
+export Slab, PGL, RailType, Rail, RailInfo, Sidewalk
 export SimpleSpan, init_simple_span, SimpleUnit, plot
 
 # Directories
@@ -35,6 +35,7 @@ const float_inch2 = typeof(1.0inch^2)
 # Include Files
 include("Utils.jl")
 include("Dimensions.jl")
+include("Conversions.jl")
 include("Types/Slab.jl")
 include("Types/Bent Cap/Bar.jl")
 include("Types/Bent Cap/Column.jl")

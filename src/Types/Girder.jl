@@ -123,20 +123,23 @@ function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, ha
     
     girder = Girder(type; haunch_height = haunch_height)
 
-    # calculate girder points
+    # pull girder points from csv based on type
     df = CSV.read(datadir("GirderGeometries.csv"), DataFrame)
-    x_offset = (max(df[!, "$(type)_x"]...) - min(df[!, "$(type)_x"]...))/2*ft
-    cuml_spacing = cumsum([osho_left, spacing...])
-    x_points = (df[!, "$(type)_x"]*ft) .+ cuml_spacing' .- x_offset
-    y_points = (df[!, "$(type)_y"]*ft) .+ sequence(1, n_girders, 0ft, 0ft)
+    df_xs = df[!, "$(type)_x"]
+    df_ys = df[!, "$(type)_y"]
+
+    # calculate girder points of each girder
+    x_offset = middle(df_xs)*ft # girder x points start at 0, must be centered
+    cuml_spacing = cumsum([osho_left - x_offset, spacing...])
+    x_points = (df_xs*ft) .+ cuml_spacing'
+    y_points = (df_ys*ft) .+ sequence(1, n_girders, 0ft, 0ft)
 
     # initialize other girder info
     df = CSV.read(datadir("GirderInfo.csv"), DataFrame)
 
     # find girder info for specified type
-    # type = girder_type(type)
-    
     g = import_data(string(type), :type, "GirderInfo.csv")
+
     # construct bearing
     brg = BearingPad(
         width = g.brg_width*inch

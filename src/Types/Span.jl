@@ -1,5 +1,7 @@
 
-
+# ----------------
+# SPAN
+# ----------------
 
 abstract type Span end
 
@@ -44,6 +46,10 @@ function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::
     )
 end
 
+# ----------------
+# BRIDGE UNIT
+# ----------------
+
 abstract type BridgeUnit end
 
 @with_kw struct SimpleUnit{T<:BentCap}
@@ -69,6 +75,7 @@ function Plots.plot(s::SimpleSpan)
         legend=:none,
         xlabel="",
         ylabel="",
+        dpi = 500,
         )
 
     # plot slab
@@ -91,7 +98,7 @@ function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
     title!("Back Span")
     plt2 = plot(fd)
     title!("Forward Span")
-    plot(plt1, plt2, layout = grid(2, 1))
+    plot(plt1, plt2, layout = grid(2, 1), dpi=500)
 end
 
 function Plots.plot(u::SimpleUnit)
