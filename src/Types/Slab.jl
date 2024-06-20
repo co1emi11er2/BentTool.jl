@@ -40,11 +40,7 @@ If curve is of type *Sting*, the function
 will output the corresponding curve direction in enum format.
 """
 function curve_type(curve::String)
-    @match curve begin
-        "left" => CurveType.left
-        "right" => CurveType.right
-        _ => error("Girder type: $girder not found")
-    end
+    getproperty(CurveType, Symbol(curve))
 end
 
 @with_kw struct PGL
@@ -56,6 +52,7 @@ end
 # ----------------
 # RAIL
 # ----------------
+
 @enumx RailType begin
     None
     SSCB
@@ -106,6 +103,15 @@ end
     SSR
 end
 
+"""
+    rail_type(rail::String)
+
+Given the name of the rail, will return RailType enum.
+"""
+function rail_type(rail::String)
+    getproperty(RailType, Symbol(rail))
+end
+
 @with_kw struct Rail
     type::RailType.T
     height::float_inch
@@ -144,6 +150,10 @@ end
     dist_fd_start::Int64
     dist_fd_end::Int64
 end
+
+# ----------------
+# SIDEWALK
+# ----------------
 
 @with_kw struct Sidewalk
     width::float_ft = 0.0ft

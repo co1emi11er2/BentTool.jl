@@ -1,4 +1,8 @@
 
+# ----------------
+# GIRDER
+# ----------------
+
 "List of different types of girders that can be used in the BentTool package"
 @enumx GirderType begin
     Tx28
@@ -75,6 +79,7 @@ end
     haunch_height::float_inch
     depth::float_inch
     bott_flange_width::float_inch
+    weight::float_plf
 end
 
 function Girder(type::GirderType.T; haunch_height = 3.0inch)
@@ -87,9 +92,14 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
         type = type,
         haunch_height = haunch_height,
         depth = girder.depth_in * inch,
-        bott_flange_width = girder.bott_flange_width * inch
+        bott_flange_width = girder.bott_flange_width * inch,
+        weight = girder.weight_plf * plf
     )
 end
+
+# ----------------
+# BEARING PAD
+# ----------------
 
 @with_kw struct BearingPad
     width::float_ft
@@ -97,10 +107,18 @@ end
     distance::float_inch = 12inch
 end
 
+# ----------------
+# PEDESTAL
+# ----------------
+
 @with_kw struct Pedestal
     width::float_inch
     height::float_inch = 1.5inch
 end
+
+# ----------------
+# GIRDER INFO
+# ----------------
 
 @with_kw struct GirderInfo
     girder::Girder
