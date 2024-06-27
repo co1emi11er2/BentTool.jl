@@ -38,6 +38,16 @@ end
     depth::float_inch
     bott_flange_width::float_inch
     weight::float_plf
+
+    function Girder(type, haunch_height, depth, bott_flange_width, weight)
+        new(
+            type,
+            haunch_height       |> to_inch,
+            depth               |> to_inch,
+            bott_flange_width   |> to_inch,
+            weight              |> to_plf
+        )
+    end
 end
 
 function Girder(type::GirderType.T; haunch_height = 3.0inch)
@@ -63,6 +73,14 @@ end
     width::float_ft
     height::float_inch = 2.75inch
     distance::float_inch = 12inch
+
+    function BearingPad(width, height, distance)
+        new(
+            width       |> to_ft,
+            height      |> to_inch,
+            distance    |> to_inch
+        )
+    end
 end
 
 # ----------------
@@ -72,6 +90,13 @@ end
 @with_kw struct Pedestal
     width::float_inch
     height::float_inch = 1.5inch
+
+    function Pedestal(width, height)
+        new(
+            width   |> to_inch,
+            height  |> to_inch,
+        )
+    end
 end
 
 # ----------------
@@ -90,12 +115,12 @@ end
 
 
 """
-    init_girder_info(;type, n_girders, osho_left, spacing, haunch_height)
+    init_girder_info(;type, n_girders, osoh_left, spacing, haunch_height)
 
-Given the girder type, number of girders, osho_left, spacing of girders, and haunch height, a GirderInfo object is constructed.
+Given the girder type, number of girders, osoh_left, spacing of girders, and haunch height, a GirderInfo object is constructed.
 
 """
-function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, haunch_height)
+function init_girder_info(;type::GirderType.T, n_girders, osoh_left, spacing, haunch_height)
     
     girder = Girder(type; haunch_height = haunch_height)
 
@@ -106,7 +131,7 @@ function init_girder_info(;type::GirderType.T, n_girders, osho_left, spacing, ha
 
     # calculate girder points of each girder
     x_offset = middle(df_xs)*ft # girder x points start at 0, must be centered
-    cuml_spacing = cumsum([osho_left - x_offset, spacing...])
+    cuml_spacing = cumsum([osoh_left - x_offset, spacing...])
     x_points = (df_xs*ft) .+ cuml_spacing'
     y_points = (df_ys*ft) .+ sequence(1, n_girders, 0ft, 0ft)
 

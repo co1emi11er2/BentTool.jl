@@ -19,7 +19,7 @@ function sequence(rows::Int, columns::Int, start=1.0, step=1.0)
             iter += step
         end
     end
-    
+
     return a
 end
 
@@ -42,7 +42,7 @@ function sequence(rows::Int, start=1.0, step=1.0)
         a[row] += iter
         iter += step
     end
-    
+
     return a
 end
 

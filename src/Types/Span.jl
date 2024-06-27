@@ -8,8 +8,8 @@ abstract type Span end
 @with_kw struct SimpleSpan <: Span
     slab::Slab
     girder_info::GirderInfo
-    osho_left::float_ft
-    osho_right::float_ft
+    osoh_left::float_ft
+    osoh_right::float_ft
     length::float_ft
 end
 
@@ -28,20 +28,20 @@ function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::
         error("Incorrect size of `spacing`. Got $(size(spacing)), expected $((n_girders-1,))")
     end
     total_spacing = sum(spacing)
-    osho = (width - total_spacing)/2
+    osoh = (width - total_spacing)/2
     slab = Slab(width=width)
     girder_info = init_girder_info(
         type = girder_type, 
         n_girders = n_girders, 
-        osho_left = osho, 
+        osoh_left = osoh, 
         spacing = spacing,
         haunch_height = haunch_height
         )
     return SimpleSpan(
         slab = slab,
         girder_info = girder_info,
-        osho_left = osho,
-        osho_right = osho,
+        osoh_left = osoh,
+        osoh_right = osoh,
         length = length,
     )
 end

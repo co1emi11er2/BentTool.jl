@@ -42,11 +42,20 @@ will output the corresponding curve direction in enum format.
 function curve_type(curve::String)
     getproperty(CurveType, Symbol(curve))
 end
+curve_type(curve::CurveType.T) = curve
 
 @with_kw struct PGL
     radius::float_ft = 0.0ft
     offset::float_ft = 0.0ft
     curve_direction::CurveType.T = CurveType.left
+
+    function PGL(radius, offset, curve_direction)
+        new(
+            radius |> to_ft,
+            offset |> to_ft,
+            curve_direction |> curve_type
+        )
+    end
 end
 
 # ----------------
@@ -111,6 +120,7 @@ Given the name of the rail, will return RailType enum.
 function rail_type(rail::String)
     getproperty(RailType, Symbol(rail))
 end
+rail_type(rail::RailType.T) = rail
 
 @with_kw struct Rail
     type::RailType.T
@@ -136,7 +146,8 @@ function Rail(type::RailType.T)
         type, 
         rail.height_in*inch, 
         rail.width_ft*ft, 
-        rail.weight_plf*plf)
+        rail.weight_plf*plf
+        )
 end
 
 
@@ -163,6 +174,27 @@ end
     dist_bk_end::Int64
     dist_fd_start::Int64
     dist_fd_end::Int64
+
+    function Sidewalk(
+        width, 
+        thickness, 
+        density, 
+        dist_bk_start, 
+        dist_bk_end, 
+        dist_fd_start, 
+        dist_fd_end
+        )
+        new(
+            width       |> to_ft, 
+            thickness   |> to_ft, 
+            density     |> to_kcf, 
+            dist_bk_start, 
+            dist_bk_end, 
+            dist_fd_start, 
+            dist_fd_end
+        )
+
+    end
 end
 
 
