@@ -65,3 +65,18 @@ to_kcf(x::Quantity) = x
 function to_kcf(x) 
     ErrorException("Incorrect Type. Expected float, int, or string, got $(typeof(x))")
 end
+
+# ----------------
+# plf
+# ----------------
+"""
+    to_plf(x)
+
+Converts x to a Unitful quantity with unit `plf`. 
+"""
+to_plf(x::Real) = x * plf
+to_plf(x::String) = parse(Float64, x) * plf
+to_plf(x::Quantity) = x
+function to_plf(x) 
+    ErrorException("Incorrect Type. Expected float, int, or string, got $(typeof(x))")
+end
