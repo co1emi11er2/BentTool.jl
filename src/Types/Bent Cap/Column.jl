@@ -30,5 +30,14 @@ end
     column::T
     n_columns::Int8
     spacing::Vector{float_ft}
+
+    function ColumnInfo(column, n_columns, spacing)
+        new(
+            column,
+            n_columns |> to_int,
+            spacing .|> float_ft
+        )
+        
+    end
 end
 

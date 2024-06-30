@@ -72,6 +72,16 @@ struct Bar
     weight::float_plf
     diameter::float_inch
     ld::float_inch
+
+    function Bar(size, area, weight, diameter, ld)
+        new(
+            size,
+            area        |> to_inch2,
+            weight      |> to_plf,
+            diameter    |> to_inch,
+            ld          |> to_inch
+        )
+    end
 end
 
 
