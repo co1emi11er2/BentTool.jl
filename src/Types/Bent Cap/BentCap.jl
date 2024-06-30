@@ -17,6 +17,45 @@ abstract type BentCap end
     bars_s_info::BarsSInfo
     bars_t_info::BarsTInfo
     column_info::T
+
+    function RectangularBentCap(
+        density,
+        fc,
+        fy,
+        exposure,
+        skew,
+        length,
+        bk_bm1_to_cap_end,
+        fd_bm1_to_cap_end,
+        depth,
+        width,
+        offset_to_leveling_pad,
+        bars_a_info,
+        bars_b_info,
+        bars_s_info,
+        bars_t_info,
+        column_info::T
+    ) where T
+        new{T}(
+            density |> to_pcf,
+            fc |> to_ksi,
+            fy |> to_ksi,
+            exposure,
+            skew |> to_deg,
+            length |> to_ft,
+            bk_bm1_to_cap_end |> to_ft,
+            fd_bm1_to_cap_end |> to_ft,
+            depth |> to_inch,
+            width |> to_inch,
+            offset_to_leveling_pad  |> to_inch,
+            bars_a_info,
+            bars_b_info,
+            bars_s_info,
+            bars_t_info,
+            column_info
+        )
+        
+    end
 end
 
 @with_kw struct InvTBentCap{T<:ColumnInfo} <: BentCap
@@ -40,6 +79,53 @@ end
     bars_s_info::BarsSInfo
     bars_t_info::BarsTInfo
     column_info::T
+
+    function InvTBentCap(
+        density, 
+        fc, 
+        fy, 
+        exposure,
+        skew, 
+        length,
+        bk_bm1_to_cap_end,
+        fd_bm1_to_cap_end,
+        ledge_depth,
+        full_depth,
+        stem_width,
+        bottom_width,
+        offset_to_leveling_pad, 
+        earwall_left,
+        earwall_right,
+        bars_a_info,
+        bars_b_info,
+        bars_s_info,
+        bars_t_info,
+        column_info::T,
+    ) where T
+        new{T}(
+            density |> to_pcf, 
+            fc |> to_ksi, 
+            fy |> to_ksi, 
+            exposure,
+            skew |> to_deg, 
+            length |> to_ft,
+            bk_bm1_to_cap_end |> to_ft,
+            fd_bm1_to_cap_end |> to_ft,
+            ledge_depth |> to_inch,
+            full_depth |> to_inch,
+            stem_width |> to_inch,
+            bottom_width |> to_inch,
+            offset_to_leveling_pad |> to_inch, 
+            earwall_left |> to_ft,
+            earwall_right |> to_ft,
+            bars_a_info,
+            bars_b_info,
+            bars_s_info,
+            bars_t_info,
+            column_info,
+        )
+        
+    end
 end
 
 

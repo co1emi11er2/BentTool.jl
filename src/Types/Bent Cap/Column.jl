@@ -31,8 +31,8 @@ end
     n_columns::Int8
     spacing::Vector{float_ft}
 
-    function ColumnInfo(column, n_columns, spacing)
-        new(
+    function ColumnInfo(column::T, n_columns, spacing) where T
+        new{T}(
             column,
             n_columns |> to_int,
             spacing .|> float_ft

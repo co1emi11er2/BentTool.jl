@@ -33,7 +33,7 @@ end
 
 
 @with_kw struct Girder
-    type::GirderType.T
+    type::GirderType.T 
     haunch_height::float_inch
     depth::float_inch
     bott_flange_width::float_inch
@@ -59,9 +59,9 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
     return Girder(
         type = type,
         haunch_height = haunch_height,
-        depth = girder.depth_in * inch,
-        bott_flange_width = girder.bott_flange_width * inch,
-        weight = girder.weight_plf * plf
+        depth = girder.depth_in,
+        bott_flange_width = girder.bott_flange_width,
+        weight = girder.weight_plf
     )
 end
 

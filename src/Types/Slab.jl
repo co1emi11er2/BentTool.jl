@@ -188,10 +188,10 @@ end
             width       |> to_ft, 
             thickness   |> to_ft, 
             density     |> to_kcf, 
-            dist_bk_start, 
-            dist_bk_end, 
-            dist_fd_start, 
-            dist_fd_end
+            dist_bk_start   |> to_int, 
+            dist_bk_end     |> to_int, 
+            dist_fd_start   |> to_int, 
+            dist_fd_end     |> to_int
         )
 
     end

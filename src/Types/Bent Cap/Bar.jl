@@ -93,10 +93,10 @@ function Bar(size::BarSize.T)
 
     Bar(
         size = size,
-        area = bar.area * inch^2,
-        weight = bar.weight * plf,
-        diameter = bar.diameter * inch,
-        ld = bar.ld * inch
+        area = bar.area,
+        weight = bar.weight,
+        diameter = bar.diameter,
+        ld = bar.ld
     )
 end
 
