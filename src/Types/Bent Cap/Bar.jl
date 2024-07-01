@@ -38,7 +38,7 @@ end
 
 If bar is of type *String*, the function will output the corresponding bar designation in enum format.
 """
-function bar_type(bar::String)
+function bar_size(bar::String)
     @match bar begin
         "#3" => BarSize.n3
         "#4" => BarSize.n4
@@ -50,9 +50,10 @@ function bar_type(bar::String)
         "#10" => BarSize.n10
         "#11" => BarSize.n11
         # "#14" => BarSize.n14
-        _ => error("Bar type: $bar not found")
+        _ => error("Bar size: $bar not found")
     end
 end
+bar_size(bar::BarSize.T) = bar
 
 """
 ```
@@ -75,7 +76,7 @@ struct Bar
 
     function Bar(size, area, weight, diameter, ld)
         new(
-            size,
+            size        |> bar_size,
             area        |> to_inch2,
             weight      |> to_plf,
             diameter    |> to_inch,
@@ -84,7 +85,11 @@ struct Bar
     end
 end
 
+"""
+    Bar(size::BarSize.T)
 
+Given bar size, a `Bar` struct is initialized.
+"""
 function Bar(size::BarSize.T)
     csv_file_name = "Bars.csv"
     lookup_col_name = :bar

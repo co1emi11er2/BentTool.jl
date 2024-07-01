@@ -1,6 +1,6 @@
 abstract type BentCap end
 
-@with_kw struct RectangularBentCap{T<:ColumnInfo} <: BentCap
+Base.@kwdef struct RectangularBentCap{T<:ColumnInfo} <: BentCap
     density::float_pcf = 150.0pcf
     fc::float_ksi = 4.0ksi
     fy::float_ksi = 60.0ksi
@@ -58,7 +58,7 @@ abstract type BentCap end
     end
 end
 
-@with_kw struct InvTBentCap{T<:ColumnInfo} <: BentCap
+Base.@kwdef struct InvTBentCap{T<:ColumnInfo} <: BentCap
     density::float_pcf = 150.0pcf
     fc::float_ksi = 4.0ksi
     fy::float_ksi = 60.0ksi
