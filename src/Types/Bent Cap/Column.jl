@@ -26,18 +26,18 @@ end
     end
 end
 
-@with_kw struct ColumnInfo{T<:Column}
+Base.@kwdef struct ColumnInfo{T<:Column}
     column::T
     n_columns::Int8
     spacing::Vector{float_ft}
 
     function ColumnInfo(column::T, n_columns, spacing) where T
+        spacing = spacing .|> to_ft
         new{T}(
             column,
             n_columns |> to_int,
-            spacing .|> float_ft
+            spacing
         )
-        
     end
 end
 
