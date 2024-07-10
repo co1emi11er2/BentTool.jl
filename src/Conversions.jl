@@ -19,7 +19,7 @@ to_float(x::String) = parse(Float64, x)
 Converts x to `Int``.
 """
 to_int(x::Real) = convert(Int, x)
-to_int(x::String) = parse(Int, x)
+to_int(x::String) = convert(Int, parse(Float64, x))
 
 
 # ----------------
