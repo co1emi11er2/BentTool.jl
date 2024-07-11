@@ -37,12 +37,19 @@ include("Utils.jl")
 include("Dimensions.jl")
 include("Conversions.jl")
 
-# Include 
-include("Types/Slab.jl")
-include("Types/Girder.jl")
-include("Types/BearingPad.jl")
-include("Types/Pedestal.jl")
-include("Types/GirderInfo.jl")
+# Include Slab Structs
+include("Types/Slab/Slab.jl")
+include("Types/Slab/Rail.jl")
+include("Types/Slab/RailInfo.jl")
+include("Types/Slab/PGL.jl")
+include("Types/Slab/Sidewalk.jl")
+
+
+# Include Girder Structs
+include("Types/Girder/Girder.jl")
+include("Types/Girder/BearingPad.jl")
+include("Types/Girder/Pedestal.jl")
+include("Types/Girder/GirderInfo.jl")
 
 # Include Bar Structs
 include("Types/Bar/Bar.jl")
