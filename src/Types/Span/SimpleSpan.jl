@@ -1,10 +1,3 @@
-
-# ----------------
-# SPAN
-# ----------------
-
-abstract type Span end
-
 @with_kw struct SimpleSpan <: Span
     slab::Slab
     girder_info::GirderInfo
@@ -12,6 +5,7 @@ abstract type Span end
     osoh_right::float_ft
     length::float_ft
 end
+
 
 """
     init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
@@ -45,23 +39,6 @@ function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::
         length = length,
     )
 end
-
-# ----------------
-# BRIDGE UNIT
-# ----------------
-
-abstract type BridgeUnit end
-
-@with_kw struct SimpleUnit{T<:BentCap}
-    bk::SimpleSpan
-    fd::SimpleSpan
-    bent::T
-    pgl::PGL
-    rail::RailInfo
-    sw::Sidewalk
-    has_super::Bool
-    dsgn_speed::float_mph
-end #TODO: This is where I left off. How will I distinguish single column vs multicolumn
 
 
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
@@ -99,10 +76,4 @@ function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
     plt2 = plot(fd)
     title!("Forward Span")
     plot(plt1, plt2, layout = grid(2, 1), dpi=500)
-end
-
-function Plots.plot(u::SimpleUnit)
-    plt1 = plot(u.bk)
-    plt2 = plot(u.fd)
-    plot(plt1, plt2, layout = grid(2, 1))
 end

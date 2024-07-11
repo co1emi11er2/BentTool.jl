@@ -32,15 +32,42 @@ const float_ksi = typeof(1.0ksi)
 const float_deg = typeof(1.0°)
 const float_inch2 = typeof(1.0inch^2)
 
-# Include Files
+# Include Utility Files
 include("Utils.jl")
 include("Dimensions.jl")
 include("Conversions.jl")
+
+# Include 
 include("Types/Slab.jl")
-include("Types/Bent Cap/Bar.jl")
-include("Types/Bent Cap/Column.jl")
-include("Types/Bent Cap/BentCap.jl")
 include("Types/Girder.jl")
-include("Types/Span.jl")
+include("Types/BearingPad.jl")
+include("Types/Pedestal.jl")
+include("Types/GirderInfo.jl")
+
+# Include Bar Structs
+include("Types/Bar/Bar.jl")
+include("Types/Bar/BarAInfo.jl")
+include("Types/Bar/BarBInfo.jl")
+include("Types/Bar/BarSInfo.jl")
+include("Types/Bar/BarTInfo.jl")
+
+# Include Column Structs
+include("Types/Column/Column.jl")
+include("Types/Column/RectangularColumn.jl")
+include("Types/Column/CircularColumn.jl")
+include("Types/Column/ColumnInfo.jl")
+
+# Include BentCap Structs
+include("Types/Bent Cap/BentCap.jl")
+include("Types/Bent Cap/RectangularBentCap.jl")
+include("Types/Bent Cap/InvTBentCap.jl")
+
+# Include Span Structs
+include("Types/Span/Span.jl")
+include("Types/Span/SimpleSpan.jl")
+
+# Include BridgeUnit Structs
+include("Types/Bridge Unit/BridgeUnit.jl")
+include("Types/Bridge Unit/SimpleUnit.jl")
 
 end
