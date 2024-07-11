@@ -1,3 +1,7 @@
+# ----------------
+# GIRDER
+# ----------------
+
 # Test Girder construction
 let
     expected = Girder(
@@ -24,6 +28,10 @@ let
     @test expected == calc2
 end
 
+# ----------------
+# BEARING PAD
+# ----------------
+
 # BearingPad constructor
 let 
     expected = BearingPad(
@@ -39,20 +47,9 @@ let
     @test expected == calc2
 end
 
-# Pedestal constructor
-let 
-    expected = BearingPad(
-        width=2ft,
-        height=2.75inch,
-        distance=12inch
-    )
-
-    calc = BearingPad(width=24inch)
-    calc2 = BearingPad(2, 2.75, 12)
-
-    @test expected == calc
-    @test expected == calc2
-end
+# ----------------
+# PEDESTAL
+# ----------------
 
 # Pedestal constructor
 let 
@@ -67,3 +64,8 @@ let
     @test expected == calc
     @test expected == calc2
 end
+
+# ----------------
+# GIRDER INFO
+# ----------------
+
