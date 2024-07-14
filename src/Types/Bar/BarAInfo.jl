@@ -2,7 +2,7 @@
 
 
 """
-@with_kw struct BarAInfo
+@with_kw_noshow struct BarAInfo
     bar::Bar
     dist_btwn_rows::float_inch
     n_row1::Int8
@@ -19,3 +19,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::BarAInfo) = custom_show(x)

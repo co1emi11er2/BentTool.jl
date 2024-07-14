@@ -2,7 +2,7 @@
 # GIRDER INFO
 # ----------------
 
-@with_kw struct GirderInfo
+@with_kw_noshow struct GirderInfo
     girder::Girder
     n_girders::Int8
     spacing::Vector{float_ft}
@@ -12,6 +12,7 @@
     pdstl::Pedestal
 end
 
+Base.show(io::IO, ::MIME"text/plain", x::GirderInfo) = custom_show(x)
 
 """
     init_girder_info(;type, n_girders, osoh_left, spacing, haunch_height)

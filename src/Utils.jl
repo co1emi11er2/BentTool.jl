@@ -67,3 +67,16 @@ function import_data(lookup_value, lookup_col_name::Symbol, csv_file_name::Strin
     end
     return data
 end
+
+"""
+    custom_show(x)
+
+Custom show function for structs
+"""
+function custom_show(x)
+    t = typeof(x)
+    println(t)
+    for field in fieldnames(t)
+        println("  ", field, ": ",  getfield(x, field))
+    end
+end

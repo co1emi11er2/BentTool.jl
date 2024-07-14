@@ -2,7 +2,7 @@
 # SIDEWALK
 # ----------------
 
-@with_kw struct Sidewalk
+@with_kw_noshow struct Sidewalk
     width::float_ft = 0.0ft
     thickness::float_ft = 0.0ft
     density::float_kcf = 0.15kcf
@@ -32,3 +32,5 @@
 
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::Sidewalk) = custom_show(x)

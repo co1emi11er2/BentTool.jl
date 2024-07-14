@@ -55,3 +55,5 @@ Base.@kwdef struct RectangularBentCap{T<:ColumnInfo} <: BentCap
         
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::RectangularBentCap) = custom_show(x)

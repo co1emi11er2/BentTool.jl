@@ -1,4 +1,4 @@
-@with_kw struct SimpleUnit{T<:BentCap}
+@with_kw_noshow struct SimpleUnit{T<:BentCap}
     bk::SimpleSpan
     fd::SimpleSpan
     bent::T
@@ -14,3 +14,5 @@ function Plots.plot(u::SimpleUnit)
     plt2 = plot(u.fd)
     plot(plt1, plt2, layout = grid(2, 1))
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::SimpleUnit) = custom_show(x)

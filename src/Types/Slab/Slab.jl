@@ -3,7 +3,7 @@
 # SLAB
 # ----------------
 
-@with_kw struct Slab
+@with_kw_noshow struct Slab
     width::float_ft
     thickness::float_inch = 8.5inch
     fws_thickness::float_inch = 0.0inch
@@ -20,3 +20,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::Slab) = custom_show(x)

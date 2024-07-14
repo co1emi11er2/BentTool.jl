@@ -1,10 +1,12 @@
-@with_kw struct SimpleSpan <: Span
+@with_kw_noshow struct SimpleSpan <: Span
     slab::Slab
     girder_info::GirderInfo
     osoh_left::float_ft
     osoh_right::float_ft
     length::float_ft
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::SimpleSpan) = custom_show(x)
 
 
 """

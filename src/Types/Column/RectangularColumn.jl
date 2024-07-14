@@ -1,4 +1,4 @@
-@with_kw struct RectangularColumn <: Column
+@with_kw_noshow struct RectangularColumn <: Column
     width::float_inch
     length::float_inch
     height::float_ft
@@ -11,3 +11,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::RectangularColumn) = custom_show(x)

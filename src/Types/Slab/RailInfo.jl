@@ -1,4 +1,4 @@
-@with_kw struct RailInfo
+@with_kw_noshow struct RailInfo
     dist_outside_to_all::Bool
     rail_left::Rail
     rail_right::Rail
@@ -8,3 +8,5 @@
     dist_fd_start::Int64
     dist_fd_end::Int64
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::RailInfo) = custom_show(x)

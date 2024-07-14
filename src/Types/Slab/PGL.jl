@@ -20,7 +20,7 @@ function curve_type(curve::String)
 end
 curve_type(curve::CurveType.T) = curve
 
-@with_kw struct PGL
+@with_kw_noshow struct PGL
     radius::float_ft = 0.0ft
     offset::float_ft = 0.0ft
     curve_direction::CurveType.T = CurveType.left
@@ -33,3 +33,5 @@ curve_type(curve::CurveType.T) = curve
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::PGL) = custom_show(x)

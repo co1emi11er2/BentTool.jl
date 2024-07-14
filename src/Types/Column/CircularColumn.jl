@@ -1,4 +1,4 @@
-@with_kw struct CircularColumn <: Column
+@with_kw_noshow struct CircularColumn <: Column
     diameter::float_inch
     height::float_ft
 
@@ -9,3 +9,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::CircularColumn) = custom_show(x)

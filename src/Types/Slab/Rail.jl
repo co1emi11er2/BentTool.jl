@@ -62,12 +62,14 @@ function rail_type(rail::String)
 end
 rail_type(rail::RailType.T) = rail
 
-@with_kw struct Rail
+@with_kw_noshow struct Rail
     type::RailType.T
     height::float_inch
     width::float_ft
     weight::float_plf
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::Rail) = custom_show(x)
 
 """
     Rail(type)

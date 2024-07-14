@@ -2,7 +2,7 @@
 # BEARING PAD
 # ----------------
 
-@with_kw struct BearingPad
+@with_kw_noshow struct BearingPad
     width::float_ft
     height::float_inch = 2.75inch
     distance::float_inch = 12inch
@@ -15,3 +15,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::BearingPad) = custom_show(x)

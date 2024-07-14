@@ -1,4 +1,4 @@
-@with_kw struct BarBInfo
+@with_kw_noshow struct BarBInfo
     bar::Bar
     dist_btwn_rows::float_inch
     n_row1::Int8
@@ -15,3 +15,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::BarBInfo) = custom_show(x)

@@ -2,7 +2,7 @@
 # PEDESTAL
 # ----------------
 
-@with_kw struct Pedestal
+@with_kw_noshow struct Pedestal
     width::float_inch
     height::float_inch = 1.5inch
 
@@ -13,3 +13,5 @@
         )
     end
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::Pedestal) = custom_show(x)

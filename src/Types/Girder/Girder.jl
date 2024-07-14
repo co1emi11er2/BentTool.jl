@@ -32,7 +32,7 @@ function girder_type(girder::String)
 end
 
 
-@with_kw struct Girder
+@with_kw_noshow struct Girder
     type::GirderType.T 
     haunch_height::float_inch
     depth::float_inch
@@ -64,3 +64,5 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
         weight = girder.weight_plf
     )
 end
+
+Base.show(io::IO, ::MIME"text/plain", x::Girder) = custom_show(x)
