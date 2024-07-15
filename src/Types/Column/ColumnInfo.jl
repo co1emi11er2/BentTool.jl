@@ -13,4 +13,4 @@ Base.@kwdef struct ColumnInfo{T<:Column}
     end
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::ColumnInfo) = custom_show(x)
+Base.show(io::IO, x::ColumnInfo) = custom_show(x)

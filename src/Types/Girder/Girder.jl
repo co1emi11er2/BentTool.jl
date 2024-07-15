@@ -65,4 +65,4 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
     )
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::Girder) = custom_show(x)
+Base.show(io::IO, x::Girder) = custom_show(x)

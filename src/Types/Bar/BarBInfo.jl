@@ -16,4 +16,4 @@
     end
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::BarBInfo) = custom_show(x)
+Base.show(io::IO, x::BarBInfo) = custom_show(x)

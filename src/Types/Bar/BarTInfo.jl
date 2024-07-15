@@ -3,4 +3,4 @@
     n_bars_face::Int8
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::BarTInfo) = custom_show(x)
+Base.show(io::IO, x::BarTInfo) = custom_show(x)

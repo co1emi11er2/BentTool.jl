@@ -34,4 +34,4 @@ curve_type(curve::CurveType.T) = curve
     end
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::PGL) = custom_show(x)
+Base.show(io::IO, x::PGL) = custom_show(x)

@@ -3,4 +3,4 @@
     n_bundle::Int8
 end
 
-Base.show(io::IO, ::MIME"text/plain", x::BarSInfo) = custom_show(x)
+Base.show(io::IO, x::BarSInfo) = custom_show(x)
