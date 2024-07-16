@@ -34,7 +34,7 @@ function Base.string(bar::BarSize.T)
 end
 
 """
-    bar_type(bar::String)
+    bar_type(bar::String) -> BarSize.T
 
 If bar is of type *String*, the function will output the corresponding bar designation in enum format.
 """
@@ -56,16 +56,16 @@ end
 bar_size(bar::BarSize.T) = bar
 
 """
-```
-struct Bar
-```
+    struct Bar
+
+An ASTM standard reinforcing bar.
 
 # Fields
-- `size`::BarSize.T
-- `area`::float_inch2
-- `weight`::float_plf
-- `diameter`::float_inch
-- `ld`::float_inch - development length of the rebar
+- `size::BarSize.T`
+- `area::float_inch2`
+- `weight::float_plf`
+- `diameter::float_inch`
+- `ld::float_inch` - development length of the rebar
 """
 @with_kw_noshow struct Bar
     size::BarSize.T
@@ -86,9 +86,20 @@ struct Bar
 end
 
 """
-    Bar(size::BarSize.T)
+    Bar(size::BarSize.T) -> Bar
+    Bar(size::String) -> Bar
 
 Given bar size, a `Bar` struct is initialized.
+
+# Arguments
+- `size::BarSize.T` or `size::String` - size of rebar.
+
+# Examples
+```julia-repl
+julia> Bar("#11");
+
+julia> Bar(BarSize.n11);
+```
 """
 function Bar(size::BarSize.T)
     csv_file_name = "Bars.csv"
@@ -104,5 +115,6 @@ function Bar(size::BarSize.T)
         ld = bar.ld
     )
 end
+Bar(size::String) = Bar(bar_size(size))
 
 Base.show(io::IO, x::Bar) = custom_show(x)

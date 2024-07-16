@@ -31,7 +31,16 @@ function girder_type(girder::String)
     getproperty(GirderType, Symbol(girder))
 end
 
+"""
+    struct Girder
 
+# Fields
+`type::GirderType.T ` - specific girder type
+`haunch_height::float_inch` - max haunch of girder
+`depth::float_inch` - depth of girder
+`bott_flange_width::float_inch` - bottom flange width of girder
+`weight::float_plf` - whight of girder
+"""
 @with_kw_noshow struct Girder
     type::GirderType.T 
     haunch_height::float_inch
