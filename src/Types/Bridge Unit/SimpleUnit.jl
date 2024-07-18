@@ -15,4 +15,4 @@ function Plots.plot(u::SimpleUnit)
     plot(plt1, plt2, layout = grid(2, 1))
 end
 
-Base.show(io::IO, x::SimpleUnit) = custom_show(x)
+Base.show(io::IO, x::SimpleUnit) = custom_show(io, x)

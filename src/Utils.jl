@@ -73,10 +73,14 @@ end
 
 Custom show function for structs
 """
-function custom_show(x)
+function custom_show(io, x)
     t = typeof(x)
-    println(t)
+    s = string(t)
     for field in fieldnames(t)
-        println("  ", field, ": ",  getfield(x, field))
+        s *= string("\n", "  ", field, ": ",  getfield(x, field))
     end
+    return print(io, s)
 end
+# function custom_show(io, x)
+#     show(io, x)
+# end

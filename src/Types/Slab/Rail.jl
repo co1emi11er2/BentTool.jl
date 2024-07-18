@@ -69,7 +69,7 @@ rail_type(rail::RailType.T) = rail
     weight::float_plf
 end
 
-Base.show(io::IO, x::Rail) = custom_show(x)
+Base.show(io::IO, x::Rail) = custom_show(io, x)
 
 """
     Rail(type)

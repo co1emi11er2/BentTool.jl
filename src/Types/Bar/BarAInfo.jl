@@ -51,4 +51,4 @@ end
 
 
 
-Base.show(io::IO, x::BarAInfo) = custom_show(x)
+Base.show(io::IO, x::BarAInfo) = custom_show(io, x)

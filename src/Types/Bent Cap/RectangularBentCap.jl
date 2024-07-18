@@ -56,4 +56,4 @@ Base.@kwdef struct RectangularBentCap{T<:ColumnInfo} <: BentCap
     end
 end
 
-Base.show(io::IO, x::RectangularBentCap) = custom_show(x)
+Base.show(io::IO, x::RectangularBentCap) = custom_show(io, x)

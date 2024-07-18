@@ -21,4 +21,4 @@
     end
 end
 
-Base.show(io::IO, x::Slab) = custom_show(x)
+Base.show(io::IO, x::Slab) = custom_show(io, x)

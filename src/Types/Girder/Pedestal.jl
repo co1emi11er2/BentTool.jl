@@ -14,4 +14,4 @@
     end
 end
 
-Base.show(io::IO, x::Pedestal) = custom_show(x)
+Base.show(io::IO, x::Pedestal) = custom_show(io, x)

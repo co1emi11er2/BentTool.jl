@@ -34,10 +34,11 @@ function Base.show(io::IO, x::ColumnInfo)
     column = typeof(x.column)
     n_columns = x.n_columns
     spacing = "["*join(x.spacing,",")*"]"
-    println("""
+    s = """
     $(column_info)
       column: $(column)
       n_columns: $(n_columns)
       spacing: $(spacing)
-    """)
+    """
+    print(io, s)
 end

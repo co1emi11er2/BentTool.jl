@@ -9,4 +9,4 @@
     dist_fd_end::Int64
 end
 
-Base.show(io::IO, x::RailInfo) = custom_show(x)
+Base.show(io::IO, x::RailInfo) = custom_show(io, x)

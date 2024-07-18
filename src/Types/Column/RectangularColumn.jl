@@ -42,4 +42,4 @@ Base.@kwdef struct RectangularColumn <: Column
     end
 end
 
-Base.show(io::IO, x::RectangularColumn) = custom_show(x)
+Base.show(io::IO, ::MIME"text/plain", x::RectangularColumn) = custom_show(io, x)

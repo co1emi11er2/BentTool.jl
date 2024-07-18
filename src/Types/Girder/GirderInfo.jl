@@ -12,7 +12,7 @@
     pdstl::Pedestal
 end
 
-Base.show(io::IO, x::GirderInfo) = custom_show(x)
+Base.show(io::IO, x::GirderInfo) = custom_show(io, x)
 
 """
     init_girder_info(;type, n_girders, osoh_left, spacing, haunch_height)

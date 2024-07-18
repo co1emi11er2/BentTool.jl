@@ -37,4 +37,4 @@ Base.@kwdef struct CircularColumn <: Column
     end
 end
 
-Base.show(io::IO, x::CircularColumn) = custom_show(x)
+Base.show(io::IO, x::CircularColumn) = custom_show(io, x)

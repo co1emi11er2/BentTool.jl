@@ -6,7 +6,7 @@
     length::float_ft
 end
 
-Base.show(io::IO, x::SimpleSpan) = custom_show(x)
+Base.show(io::IO, x::SimpleSpan) = custom_show(io, x)
 
 
 """

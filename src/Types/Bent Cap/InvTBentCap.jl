@@ -68,7 +68,7 @@ Base.@kwdef struct InvTBentCap{T<:ColumnInfo} <: BentCap
     end
 end
 
-Base.show(io::IO, x::InvTBentCap) = custom_show(x)
+Base.show(io::IO, x::InvTBentCap) = custom_show(io, x)
 
 
 

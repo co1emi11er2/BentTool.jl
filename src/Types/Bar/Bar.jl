@@ -117,4 +117,4 @@ function Bar(size::BarSize.T)
 end
 Bar(size::String) = Bar(bar_size(size))
 
-Base.show(io::IO, x::Bar) = custom_show(x)
+Base.show(io::IO, x::Bar) = custom_show(io, x)

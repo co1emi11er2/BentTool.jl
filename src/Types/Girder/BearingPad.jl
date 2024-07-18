@@ -16,4 +16,4 @@
     end
 end
 
-Base.show(io::IO, x::BearingPad) = custom_show(x)
+Base.show(io::IO, x::BearingPad) = custom_show(io, x)

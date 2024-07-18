@@ -41,4 +41,4 @@ Base.@kwdef struct BarTInfo
     end
 end
 
-Base.show(io::IO, x::BarTInfo) = custom_show(x)
+Base.show(io::IO, x::BarTInfo) = custom_show(io, x)
