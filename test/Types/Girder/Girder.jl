@@ -14,9 +14,10 @@ let
 
     # simple construction
     calc = Girder(GirderType.Tx54)
+    calc2 = Girder("Tx54")
 
     # auto unit construction
-    calc2 = Girder(
+    calc3 = Girder(
         type=GirderType.Tx54,
         haunch_height = 3,
         depth=54,
@@ -26,4 +27,5 @@ let
 
     @test expected == calc
     @test expected == calc2
+    @test expected == calc3
 end

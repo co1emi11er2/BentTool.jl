@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.42
+# v0.19.43
 
 using Markdown
 using InteractiveUtils
@@ -19,13 +19,16 @@ c = ColumnInfo(r, 1, 10)
 # ╔═╡ 4e9f3434-8fa7-470e-9a9d-84c7bb35d843
 b = BarAInfo(Bar("#11"), 4, 12)
 
+# ╔═╡ b2ccbfcf-7dc5-4aa1-916f-7e359a52c423
+g = Girder("Tx54")
+
+# ╔═╡ e46a2be1-8669-4714-a381-7616ba248d90
+
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 PlutoDevMacros = "a0499f29-c39b-4c5c-807c-88074221b949"
-
-[compat]
-PlutoDevMacros = "~0.9.0"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -34,7 +37,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.4"
 manifest_format = "2.0"
-project_hash = "9c51cf46a1e177639a0c248b9cdccbfd7b4d05d7"
+project_hash = "ec369614e15a612e8c4a329e83a8a13b00c5465b"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -45,12 +48,6 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
-
-[[deps.CodeTracking]]
-deps = ["InteractiveUtils", "UUIDs"]
-git-tree-sha1 = "c0216e792f518b39b22212127d4a84dc31e4e386"
-uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
-version = "1.3.5"
 
 [[deps.Dates]]
 deps = ["Printf"]
@@ -67,12 +64,6 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 [[deps.InteractiveUtils]]
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
-
-[[deps.JuliaInterpreter]]
-deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "a6adc2dcfe4187c40dc7c2c9d2128e326360e90a"
-uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.9.32"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -133,10 +124,10 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.10.0"
 
 [[deps.PlutoDevMacros]]
-deps = ["JuliaInterpreter", "Logging", "MacroTools", "Pkg", "TOML"]
-git-tree-sha1 = "72f65885168722413c7b9a9debc504c7e7df7709"
+deps = ["MacroTools", "Pkg", "TOML"]
+git-tree-sha1 = "dd44039d6e618272025d39c0c5dddaaf7f33ec02"
 uuid = "a0499f29-c39b-4c5c-807c-88074221b949"
-version = "0.9.0"
+version = "0.8.1"
 
 [[deps.Printf]]
 deps = ["Unicode"]
@@ -199,5 +190,7 @@ version = "17.4.0+2"
 # ╠═bc39e802-908b-4625-9d23-d2ba77ee00cf
 # ╠═3958c692-7c8a-460e-9c86-2da6e4d4295d
 # ╠═4e9f3434-8fa7-470e-9a9d-84c7bb35d843
+# ╠═b2ccbfcf-7dc5-4aa1-916f-7e359a52c423
+# ╠═e46a2be1-8669-4714-a381-7616ba248d90
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
