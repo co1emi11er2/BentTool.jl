@@ -14,7 +14,7 @@ using PlutoDevMacros
 r = RectangularColumn(72, 96, 20)
 
 # ╔═╡ 3958c692-7c8a-460e-9c86-2da6e4d4295d
-c = ColumnInfo(r, 1, 10)
+c = ColumnInfo(r, 1, [10, 5])
 
 # ╔═╡ 4e9f3434-8fa7-470e-9a9d-84c7bb35d843
 b = BarAInfo(Bar("#11"), 4, 12)
