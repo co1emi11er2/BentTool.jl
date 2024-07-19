@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.43
+# v0.19.42
 
 using Markdown
 using InteractiveUtils
@@ -24,10 +24,10 @@ using PlutoUI
 @fromparent import *
 
 # ╔═╡ bc39e802-908b-4625-9d23-d2ba77ee00cf
-r = RectangularColumn(72, 96, 20)
+r = CircularColumn(96, 20);
 
 # ╔═╡ 3958c692-7c8a-460e-9c86-2da6e4d4295d
-c = ColumnInfo(r, 1, 10)
+c = ColumnInfo(r, 2, [10; 10])
 
 # ╔═╡ 4e9f3434-8fa7-470e-9a9d-84c7bb35d843
 b = BarAInfo(Bar("#11"), 4, 12)
@@ -67,6 +67,9 @@ bk = init_simple_span(
 
 # ╔═╡ 256e98cf-675a-4c4a-9cc9-64a5a027269f
 plot(bk)
+
+# ╔═╡ 166f0092-517e-460e-87c5-e4fd40a78647
+BearingPad(3, 5.5, 10)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -254,10 +257,10 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.10.0"
 
 [[deps.PlutoDevMacros]]
-deps = ["MacroTools", "Pkg", "TOML"]
-git-tree-sha1 = "dd44039d6e618272025d39c0c5dddaaf7f33ec02"
+deps = ["JuliaInterpreter", "Logging", "MacroTools", "Pkg", "TOML"]
+git-tree-sha1 = "72f65885168722413c7b9a9debc504c7e7df7709"
 uuid = "a0499f29-c39b-4c5c-807c-88074221b949"
-version = "0.8.1"
+version = "0.9.0"
 
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
@@ -388,5 +391,6 @@ version = "17.4.0+2"
 # ╟─b9f967a2-0de6-4e51-bf4f-98f8a18bf516
 # ╟─33f48a89-6524-43d9-bde5-12ab21b04240
 # ╟─256e98cf-675a-4c4a-9cc9-64a5a027269f
+# ╠═166f0092-517e-460e-87c5-e4fd40a78647
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

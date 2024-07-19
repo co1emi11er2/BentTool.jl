@@ -26,8 +26,13 @@ let
         @test getfield(calc, field) == getfield(expected, field)
     end
 
+    # test n_columns and spacing match
     err = "spacing entries must equal n_columns.Got length(spacing) = 2 vs n_columns = 1"
     @test_throws err ColumnInfo(r, 1, [10, 5])
+
+    # test n_columns and spacing match
+    err = "number of columns must be greater than or equal to 1. Got -1"
+    @test_throws err ColumnInfo(r, -1, [10])
 end
 
 # Test Circular column integration

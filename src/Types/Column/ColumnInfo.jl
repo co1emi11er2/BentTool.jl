@@ -6,8 +6,33 @@ A struct that contains column information for a bent.
 # Fields
 - `column::T` - a type of `Column` struct
 - `n_columns::Int8` - number of columns in the bent
-- `spacing::Vector{float_ft}` - spacing of column/s (first entry is the offset from 
-left end of cap)
+- `spacing::Vector{float_ft}` - spacing of column/s (first entry is the offset from left end of cap)
+
+# Constructors
+```
+ColumnInfo(column::T, n_columns, spacing) where T -> ColumnInfo{T}
+ColumnInfo(; column::T, n_columns, spacing) where T -> ColumnInfo{T}
+```
+
+# Examples
+```julia-repl
+julia> r = RectangularColumn(72, 96, 20);
+
+julia> c = ColumnInfo(r, 1, 10)
+ColumnInfo{RectangularColumn}
+    column: RectangularColumn
+    n_columns: 1
+    spacing: [10.0 ft]
+
+julia> r = CircularColumn(96, 20);;
+
+julia> c = ColumnInfo(r, 2, [10; 10])
+ColumnInfo{CircularColumn}
+    column: CircularColumn
+    n_columns: 1
+    spacing: [10.0 ft,10.0 ft]
+
+```
 """
 Base.@kwdef struct ColumnInfo{T<:Column}
     column::T
