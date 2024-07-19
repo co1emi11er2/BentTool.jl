@@ -30,6 +30,7 @@ If girder is of type *Sting*, the function will output the corresponding girder 
 function girder_type(girder::String)
     getproperty(GirderType, Symbol(girder))
 end
+girder_type(girder::GirderType.T) = girder
 
 """
     struct Girder
@@ -72,6 +73,9 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
         bott_flange_width = girder.bott_flange_width,
         weight = girder.weight_plf
     )
+end
+function Girder(type::String; haunch_height = 3.0inch)
+    Girder(girder_type(type); haunch_height = haunch_height)
 end
 
 Base.show(io::IO, x::Girder) = custom_show(io, x)
