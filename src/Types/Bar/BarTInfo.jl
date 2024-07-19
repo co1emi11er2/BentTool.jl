@@ -1,8 +1,3 @@
-# @with_kw_noshow struct BarTInfo
-#     bar::Bar
-#     n_bars_face::Int8
-# end
-
 """
     struct BarTInfo
 

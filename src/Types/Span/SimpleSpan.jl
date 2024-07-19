@@ -16,7 +16,9 @@ Given the slab width, span length, girder type, number of girders, spacing of gi
 
 """
 function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
-
+    width = width |> to_ft
+    length = length |> to_ft
+    spacing = spacing |> to_ft
     # set spacing to proper size
     if size(spacing) == ()
         spacing = vec(sequence(n_girders-1, 1, spacing, 0.0ft))
