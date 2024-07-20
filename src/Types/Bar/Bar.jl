@@ -96,9 +96,21 @@ Given bar size, a `Bar` struct is initialized.
 
 # Examples
 ```julia-repl
-julia> Bar("#11");
+julia> Bar("#11")
+Bar
+  size: n11
+  area: 1.563 inch^2
+  weight: 5.313 plf
+  diameter: 1.41 inch
+  ld: 48.16 inch
 
-julia> Bar(BarSize.n11);
+julia> Bar(BarSize.n11)
+Bar
+  size: n11
+  area: 1.563 inch^2
+  weight: 5.313 plf
+  diameter: 1.41 inch
+  ld: 48.16 inch
 ```
 """
 function Bar(size::BarSize.T)

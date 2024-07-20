@@ -46,6 +46,19 @@ function sequence(rows::Int, start=1.0, step=1.0)
     return a
 end
 
+# TODO: FIX Sequence!!!
+"""
+    eq_spa(n::Int, spa)
+
+Generates a vector of n with values of spa
+
+# Parameters
+- `n`::Int - number of spaces
+- `spa` - spacing
+"""
+function eq_spa(n::Int, spa)
+    return sequence(n, spa, zero(typeof(spa)))
+end
 
 """
     import_data(lookup_value, lookup_col_name::Symbol, data_location::String)
@@ -81,6 +94,23 @@ function custom_show(io, x)
     end
     return print(io, s)
 end
-# function custom_show(io, x)
-#     show(io, x)
-# end
+
+"""
+    check_spa(n, spa)
+
+Checks to see if spacing and number of items are in agreement.
+"""
+function check_spa(n, spa)
+
+    # check n is a correct number
+    if n <=0
+        error("number of items must be greater than or equal to 1. Got $(n)")
+    # check if n match spa
+    elseif length(spa) != n
+        error(string("spacing entries must equal number of items.",
+            "Got length(spacing) = $(length(spa)) ",
+            "vs n = $(n)"))
+    end
+
+    return Nothing
+end

@@ -24,7 +24,7 @@ using PlutoUI
 @fromparent import *
 
 # ╔═╡ bc39e802-908b-4625-9d23-d2ba77ee00cf
-r = CircularColumn(96, 20);
+r = RectangularColumn(72, 96, 20)
 
 # ╔═╡ 3958c692-7c8a-460e-9c86-2da6e4d4295d
 c = ColumnInfo(r, 2, [10; 10])
@@ -70,6 +70,42 @@ plot(bk)
 
 # ╔═╡ 166f0092-517e-460e-87c5-e4fd40a78647
 BearingPad(3, 5.5, 10)
+
+# ╔═╡ 31ddbccb-e69a-401c-b1f4-cd31831a968b
+struct MyType
+	a
+	b
+end
+
+# ╔═╡ 73de7da9-c23a-47f4-8bae-2978b56f62d9
+Base.show(io::IO, ::MIME"text/plain", x::MyType) = print(io, "a: $(x.a), b: $(x.b)")
+
+# ╔═╡ 8441e1f4-240a-4dc8-9ae3-090f9f7d96da
+mytype = MyType(5, 6)
+
+# ╔═╡ 6c6dbcb2-51e5-4f9c-b9a6-530386d74a2b
+Girder(GirderType.Tx54, haunch_height = 2)
+
+# ╔═╡ 764ea749-8eaa-48e9-a9ac-4da587a3637f
+sequence(1, 4, 8, 0)
+
+# ╔═╡ b258bd33-adac-4991-8824-7e6405526a31
+GirderInfo(
+	Girder("Tx54"),
+	5,
+	[3, sequence(4, 1, 8, 0)...],
+	BearingPad(3),
+	Pedestal(3)
+)
+
+# ╔═╡ d841cb1d-eb05-4814-9544-917d2899e1e8
+eq_spa(4, 8.0)
+
+# ╔═╡ 2cbf39e3-95a8-4862-8f9e-16ac370cfab2
+zero(float_ft)
+
+# ╔═╡ 8fdd3511-c705-43e0-9309-e67e9762205b
+
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -392,5 +428,14 @@ version = "17.4.0+2"
 # ╟─33f48a89-6524-43d9-bde5-12ab21b04240
 # ╟─256e98cf-675a-4c4a-9cc9-64a5a027269f
 # ╠═166f0092-517e-460e-87c5-e4fd40a78647
+# ╠═31ddbccb-e69a-401c-b1f4-cd31831a968b
+# ╠═73de7da9-c23a-47f4-8bae-2978b56f62d9
+# ╠═8441e1f4-240a-4dc8-9ae3-090f9f7d96da
+# ╠═6c6dbcb2-51e5-4f9c-b9a6-530386d74a2b
+# ╠═764ea749-8eaa-48e9-a9ac-4da587a3637f
+# ╠═b258bd33-adac-4991-8824-7e6405526a31
+# ╠═d841cb1d-eb05-4814-9544-917d2899e1e8
+# ╠═2cbf39e3-95a8-4862-8f9e-16ac370cfab2
+# ╠═8fdd3511-c705-43e0-9309-e67e9762205b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

@@ -1,18 +1,42 @@
 # ----------------
 # GIRDER INFO
 # ----------------
+"""
+    struct GirderInfo
 
+# Fields
+- `girder::Girder` - `Girder` struct
+- `n_girders::Int8` - max haunch of girder
+- `spacing::Vector{float_ft}` - spacing of girders (first entry is spacing from left slab edge)
+- `brg::BearingPad` - `BearingPad` struct
+- `pdstl::Pedestal` - Pedestal` struct
+  
+```
+"""
 @with_kw_noshow struct GirderInfo
     girder::Girder
     n_girders::Int8
     spacing::Vector{float_ft}
-    x_points::Matrix{float_ft}
-    y_points::Matrix{float_ft}
     brg::BearingPad
     pdstl::Pedestal
+
+    function GirderInfo(girder, n_girders, spacing, brg,pdstl)
+        n_girders = n_girders |> to_int
+
+        check_spa(n_girders, spacing)
+
+        spacing = spacing .|> to_ft
+        new(
+            girder,
+            n_girders,
+            spacing
+        )
+    
+    end
 end
 
 Base.show(io::IO, x::GirderInfo) = custom_show(io, x)
+
 
 """
     init_girder_info(;type, n_girders, osoh_left, spacing, haunch_height)
