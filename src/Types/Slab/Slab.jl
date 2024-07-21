@@ -10,7 +10,7 @@
     fws_density::float_kcf = 0.15kcf
     cross_slope::Float64 = 0.0
 
-    function Slab(width, thickness, fws_thickness, fws_density, cross_slope)
+    function Slab(width, thickness = 8.5inch, fws_thickness = 0.0inch, fws_density = 0.15kcf, cross_slope = 0.0)
         new(
             width           |> to_ft,
             thickness       |> to_inch,

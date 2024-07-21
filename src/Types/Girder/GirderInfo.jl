@@ -108,5 +108,10 @@ function girder_points(g::GirderInfo)
     cuml_spacing = cumsum([spacing[1] - x_offset, spacing[2:end]...])
     x_points = (df_xs*ft) .+ cuml_spacing'
     y_points = (df_ys*ft) .+ sequence(1, n_girders, 0ft, 0ft) .- y_offset
+
+    # convert points to vector of vectors
+    x_points = Vector{eltype(x_points)}[eachcol(x_points)...]
+    y_points = Vector{eltype(y_points)}[eachcol(y_points)...]
+
     return x_points, y_points
 end
