@@ -20,7 +20,7 @@
     brg::BearingPad
     pdstl::Pedestal
 
-    function GirderInfo(girder, n_girders, spacing, brg,pdstl)
+    function GirderInfo(girder, n_girders, spacing, brg, pdstl)
         n_girders = n_girders |> to_int
 
         check_spa(n_girders, spacing)
@@ -29,7 +29,9 @@
         new(
             girder,
             n_girders,
-            spacing
+            spacing,
+            brg,
+            pdstl
         )
     
     end
@@ -89,8 +91,10 @@ end
 
 function girder_points(g::GirderInfo)
 
-    # girder type
+    # girder info
     type = g.girder.type
+    spacing = g.spacing
+    n_girders = g.n_girders
 
     # pull girder points from csv based on type
     df = CSV.read(datadir("GirderGeometries.csv"), DataFrame)
@@ -99,7 +103,10 @@ function girder_points(g::GirderInfo)
 
     # calculate girder points of each girder
     x_offset = middle(df_xs)*ft # girder x points start at 0, must be centered
-    cuml_spacing = cumsum([osoh_left - x_offset, spacing...])
+    y_offset = g.girder.haunch_height
+
+    cuml_spacing = cumsum([spacing[1] - x_offset, spacing[2:end]...])
     x_points = (df_xs*ft) .+ cuml_spacing'
-    y_points = (df_ys*ft) .+ sequence(1, n_girders, 0ft, 0ft)
+    y_points = (df_ys*ft) .+ sequence(1, n_girders, 0ft, 0ft) .- y_offset
+    return x_points, y_points
 end

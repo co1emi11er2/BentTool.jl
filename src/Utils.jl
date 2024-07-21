@@ -9,7 +9,7 @@ The sequence function allows you to generate a list of sequential numbers in an 
 - `start` - starting point of sequence
 - `step` - stepping increment in sequence
 """
-function sequence(rows::Int, columns::Int, start=1.0, step=1.0)
+function sequence(rows::Integer, columns::Integer, start=1.0, step=1.0)
     # initialize array and step through
     a = ones(Float64, rows, columns) * start
     iter = 0.0 * start
@@ -34,7 +34,7 @@ The sequence function allows you to generate a list of sequential numbers in an 
 - `start` - starting point of sequence
 - `step` - stepping increment in sequence
 """
-function sequence(rows::Int, start=1.0, step=1.0)
+function sequence(rows::Integer, start=1.0, step=1.0)
     # initialize array and step through
     a = ones(Float64, rows) * start
     iter = 0.0 * start

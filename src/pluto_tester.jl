@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.42
+# v0.19.43
 
 using Markdown
 using InteractiveUtils
@@ -90,7 +90,7 @@ Girder(GirderType.Tx54, haunch_height = 2)
 sequence(1, 4, 8, 0)
 
 # ╔═╡ b258bd33-adac-4991-8824-7e6405526a31
-GirderInfo(
+gi = GirderInfo(
 	Girder("Tx54"),
 	5,
 	[3, sequence(4, 1, 8, 0)...],
@@ -99,23 +99,19 @@ GirderInfo(
 )
 
 # ╔═╡ d841cb1d-eb05-4814-9544-917d2899e1e8
-eq_spa(4, 8.0)
+x, y = girder_points(gi)
 
-# ╔═╡ 2cbf39e3-95a8-4862-8f9e-16ac370cfab2
-zero(float_ft)
+# ╔═╡ bb672773-ddfe-420e-9419-23a6d2ca4aae
+sequence(1, 5, 0ft, 0ft)
 
-# ╔═╡ 8fdd3511-c705-43e0-9309-e67e9762205b
-
+# ╔═╡ cd440ea7-5273-447b-8866-81dadede84da
+x
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 PlutoDevMacros = "a0499f29-c39b-4c5c-807c-88074221b949"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
-
-[compat]
-PlutoDevMacros = "~0.9.0"
-PlutoUI = "~0.7.59"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -124,7 +120,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.10.4"
 manifest_format = "2.0"
-project_hash = "83247a4023140a558c96b165e63964b7727b5043"
+project_hash = "aa787464686b4423c4a77455857731dfdd022b71"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -141,12 +137,6 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 
 [[deps.Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
-
-[[deps.CodeTracking]]
-deps = ["InteractiveUtils", "UUIDs"]
-git-tree-sha1 = "c0216e792f518b39b22212127d4a84dc31e4e386"
-uuid = "da1fd8a2-8d9e-5ec2-8556-3022fb5608a2"
-version = "1.3.5"
 
 [[deps.ColorTypes]]
 deps = ["FixedPointNumbers", "Random"]
@@ -204,12 +194,6 @@ deps = ["Dates", "Mmap", "Parsers", "Unicode"]
 git-tree-sha1 = "31e996f0a15c7b280ba9f76636b3ff9e2ae58c9a"
 uuid = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 version = "0.21.4"
-
-[[deps.JuliaInterpreter]]
-deps = ["CodeTracking", "InteractiveUtils", "Random", "UUIDs"]
-git-tree-sha1 = "a6adc2dcfe4187c40dc7c2c9d2128e326360e90a"
-uuid = "aa1ae85d-cabe-5617-a682-6adf51b2e16a"
-version = "0.9.32"
 
 [[deps.LibCURL]]
 deps = ["LibCURL_jll", "MozillaCACerts_jll"]
@@ -293,10 +277,10 @@ uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 version = "1.10.0"
 
 [[deps.PlutoDevMacros]]
-deps = ["JuliaInterpreter", "Logging", "MacroTools", "Pkg", "TOML"]
-git-tree-sha1 = "72f65885168722413c7b9a9debc504c7e7df7709"
+deps = ["MacroTools", "Pkg", "TOML"]
+git-tree-sha1 = "dd44039d6e618272025d39c0c5dddaaf7f33ec02"
 uuid = "a0499f29-c39b-4c5c-807c-88074221b949"
-version = "0.9.0"
+version = "0.8.1"
 
 [[deps.PlutoUI]]
 deps = ["AbstractPlutoDingetjes", "Base64", "ColorTypes", "Dates", "FixedPointNumbers", "Hyperscript", "HypertextLiteral", "IOCapture", "InteractiveUtils", "JSON", "Logging", "MIMEs", "Markdown", "Random", "Reexport", "URIs", "UUIDs"]
@@ -435,7 +419,7 @@ version = "17.4.0+2"
 # ╠═764ea749-8eaa-48e9-a9ac-4da587a3637f
 # ╠═b258bd33-adac-4991-8824-7e6405526a31
 # ╠═d841cb1d-eb05-4814-9544-917d2899e1e8
-# ╠═2cbf39e3-95a8-4862-8f9e-16ac370cfab2
-# ╠═8fdd3511-c705-43e0-9309-e67e9762205b
+# ╠═bb672773-ddfe-420e-9419-23a6d2ca4aae
+# ╠═cd440ea7-5273-447b-8866-81dadede84da
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
