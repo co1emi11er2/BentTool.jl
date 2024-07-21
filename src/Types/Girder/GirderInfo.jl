@@ -26,7 +26,7 @@ julia> GirderInfo(
 	[3, 8, 8, 8, 8],
 	BearingPad(3),
 	Pedestal(3)
-)
+    )
 GirderInfo
   girder: Tx54
   n_columns: 5
@@ -35,10 +35,10 @@ GirderInfo
   pdstl: 3.0 ft wide x 1.5 inch tall
 
 julia> GirderInfo(
-	Girder("Tx54"),
+    Girder("Tx54"),
 	5,
 	[3, 8, 8, 8, 8],
-)
+    )
 GirderInfo
   girder: Tx54
   n_columns: 5

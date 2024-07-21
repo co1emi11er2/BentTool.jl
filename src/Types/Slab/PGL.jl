@@ -7,6 +7,7 @@
 @enumx CurveType begin
     left
     right
+    straight
 end
 
 """
@@ -26,20 +27,46 @@ curve_type(curve::CurveType.T) = curve
 The Profile Grade Line of a bridge.
 
 # Fields
-- `radius::float_ft = 0.0ft` - radius of PGL
-- `offset::float_ft = 0.0ft` - offset from left edge of slab
 - `curve_direction::CurveType.T = CurveType.left` - curve direction of PGL
+- `offset::float_ft = 0.0ft` - offset from left edge of slab
+- `radius::float_ft = 0.0ft` - radius of PGL
+
+# Constructors
+```
+PGL(curve_direction, offset, radius) -> PGL
+```
+
+# Examples
+```julia-repl
+julia> PGL()
+PGL
+  curve_direction: straight
+  offset: 0.0 ft
+  radius: 0.0 ft
+
+julia> PGL("left", 5.5, 1000)
+PGL
+  curve_direction: left
+  offset: 5.5 ft
+  radius: 1000.0 ft
+
+julia> PGL(CurveType.left, 5.5, 1000)
+PGL
+  curve_direction: left
+  offset: 5.5 ft
+  radius: 1000.0 ft
+```
 """
 @with_kw_noshow struct PGL
-    radius::float_ft = 0.0ft
+    curve_direction::CurveType.T = CurveType.straight
     offset::float_ft = 0.0ft
-    curve_direction::CurveType.T = CurveType.left
+    radius::float_ft = 0.0ft
 
-    function PGL(radius, offset, curve_direction)
+    function PGL(curve_direction, offset, radius)
         new(
-            radius |> to_ft,
+            curve_direction |> curve_type,
             offset |> to_ft,
-            curve_direction |> curve_type
+            radius |> to_ft,
         )
     end
 end
