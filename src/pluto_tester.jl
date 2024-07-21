@@ -94,8 +94,6 @@ gi = GirderInfo(
 	Girder("Tx54"),
 	5,
 	[3, sequence(4, 1, 8, 0)...],
-	BearingPad(3),
-	Pedestal(3)
 )
 
 # ╔═╡ d841cb1d-eb05-4814-9544-917d2899e1e8
@@ -105,7 +103,17 @@ x, y = girder_points(gi)
 sequence(1, 5, 0ft, 0ft)
 
 # ╔═╡ cd440ea7-5273-447b-8866-81dadede84da
-x
+gi2 = GirderInfo(
+	Girder("Tx54"),
+	5,
+	[3, sequence(4, 1, 8, 0)...],
+)
+
+# ╔═╡ 0ecb7adb-a160-4130-93e5-b7fb3c420476
+let 
+x = 3.33333ft
+print( x)
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -421,5 +429,6 @@ version = "17.4.0+2"
 # ╠═d841cb1d-eb05-4814-9544-917d2899e1e8
 # ╠═bb672773-ddfe-420e-9419-23a6d2ca4aae
 # ╠═cd440ea7-5273-447b-8866-81dadede84da
+# ╠═0ecb7adb-a160-4130-93e5-b7fb3c420476
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
