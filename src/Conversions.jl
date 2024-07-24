@@ -1,4 +1,15 @@
 # ----------------
+# boolean
+# ----------------
+"""
+    to_bool(x)
+
+Converts x to `Bool``.
+"""
+to_bool(x::Real) = x == 0 ? false : true
+to_bool(x::String) = parse(Bool, lowercase(x))
+
+# ----------------
 # float
 # ----------------
 """

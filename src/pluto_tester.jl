@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.43
+# v0.19.42
 
 using Markdown
 using InteractiveUtils
@@ -116,7 +116,13 @@ print( x)
 end
 
 # ╔═╡ 10e22cd7-81eb-47a8-bdc2-fe9f2c98410d
-Rail(RailType.SSTR)
+Rail(RailType.T222)
+
+# ╔═╡ 3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
+RailInfo(
+	Rail("SSTR"),
+	Rail(RailType.T222),
+)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -434,5 +440,6 @@ version = "17.4.0+2"
 # ╠═cd440ea7-5273-447b-8866-81dadede84da
 # ╠═0ecb7adb-a160-4130-93e5-b7fb3c420476
 # ╠═10e22cd7-81eb-47a8-bdc2-fe9f2c98410d
+# ╠═3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
