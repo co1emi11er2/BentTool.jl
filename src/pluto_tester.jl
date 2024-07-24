@@ -57,6 +57,8 @@ md"Back Span Length: $(@bind bk_span_length TextField()) ft"
 bk_girder = Girder(bk_span_girder);
 
 # ╔═╡ 33f48a89-6524-43d9-bde5-12ab21b04240
+# ╠═╡ disabled = true
+#=╠═╡
 bk = init_simple_span(
 	width= bk_span_width,
 	length=bk_span_length,
@@ -64,9 +66,13 @@ bk = init_simple_span(
 	n_girders=n_bk_bms,
 	spacing=bk_bms_spa
 );
+  ╠═╡ =#
 
 # ╔═╡ 256e98cf-675a-4c4a-9cc9-64a5a027269f
+# ╠═╡ disabled = true
+#=╠═╡
 plot(bk)
+  ╠═╡ =#
 
 # ╔═╡ 166f0092-517e-460e-87c5-e4fd40a78647
 BearingPad(3, 5.5, 10)
@@ -427,7 +433,7 @@ version = "17.4.0+2"
 # ╟─4a06fac2-184e-4fae-8566-c82cbc23bcfb
 # ╟─b9f967a2-0de6-4e51-bf4f-98f8a18bf516
 # ╟─33f48a89-6524-43d9-bde5-12ab21b04240
-# ╟─256e98cf-675a-4c4a-9cc9-64a5a027269f
+# ╠═256e98cf-675a-4c4a-9cc9-64a5a027269f
 # ╠═166f0092-517e-460e-87c5-e4fd40a78647
 # ╠═31ddbccb-e69a-401c-b1f4-cd31831a968b
 # ╠═73de7da9-c23a-47f4-8bae-2978b56f62d9
