@@ -2,68 +2,77 @@
 # SIDEWALK
 # ----------------
 """
-    struct RailInfo
+    struct Sidewalk
 
-Contains information for the rails of a bridge.
+Contains information for the sidewalk of a bridge.
 
 # Fields
-- `rail_left::Rail` - left rail on the bridge
-- `rail_right::Rail` - right rail on the bridge
-- `rail_3rd::Rail = Rail(RailType.None)` - 3rd rail on the bridge (if any)
-- `dist_outside_to_all::Bool = False` - whether to distribute outside rail to all beams
-- `dist_bk_start::Int64 = 0` - back span start beam to distribute 3rd rail
-- `dist_bk_end::Int64 = 0` - back span end beam to distribute 3rd rail
-- `dist_fd_start::Int64 = 0` - fwd span start beam to distribute 3rd rail
-- `dist_fd_end::Int64 = 0` - fwd span start beam to distribute 3rd rail
+- `width::float_ft = 0.0ft` - width of the sidewalk
+- `thickness::float_inch = 0.0inch` - thickness of the sidewalk
+- `density::float_kcf = 0.15kcf` -  density of the sidewalk
+- `dist_bk_start::Int64 = 0` - back span start beam to distribute sidewalk
+- `dist_bk_end::Int64 = 0` - back span end beam to distribute sidewalk
+- `dist_fd_start::Int64 = 0` - fwd span start beam to distribute sidewalk
+- `dist_fd_end::Int64 = 0` - fwd span start beam to distribute sidewalk
 
 # Constuctors
 ```
-RailInfo(
-    rail_left,
-    rail_right,
-    rail_3rd = Rail(RailType.None),
-    dist_outside_to_all::Bool = False,
-    dist_bk_start = 0,
-    dist_bk_end = 0,
-    dist_fd_start = 0,
-    dist_fd_end = 0,
-) -> RailInfo
+Sidewalk(
+    width = 0.0ft, 
+    thickness = 0.0inch, 
+    density = 0.15kcf, 
+    dist_bk_start = 0, 
+    dist_bk_end = 0, 
+    dist_fd_start = 0, 
+    dist_fd_end = 0
+    ) -> Sidewalk
 ```
 
 # Examples
 
 ```julia-repl
-julia> RailInfo(
-	Rail("SSTR"),
-	Rail(RailType.T222),
-)
-RailInfo
-  rail_left: SSTR
-  rail_right: T222
-  rail_3rd: None
+julia> Sidewalk()
+Sidewalk
+  width: 0.0 ft
+  thickness: 0.0 inch
+  density: 0.15 kcf
+  dist_bk_start: 0
+  dist_bk_end: 0
+  dist_fd_start: 0
+  dist_fd_end: 0
+
+julia> Sidewalk(10, 4)
+Sidewalk
+  width: 10.0 ft
+  thickness: 4.0 inch
+  density: 0.15 kcf
+  dist_bk_start: 0
+  dist_bk_end: 0
+  dist_fd_start: 0
+  dist_fd_end: 0
 ```
 """
 @with_kw_noshow struct Sidewalk
     width::float_ft = 0.0ft
-    thickness::float_ft = 0.0ft
+    thickness::float_inch = 0.0inch
     density::float_kcf = 0.15kcf
-    dist_bk_start::Int64
-    dist_bk_end::Int64
-    dist_fd_start::Int64
-    dist_fd_end::Int64
+    dist_bk_start::Int64 = 0
+    dist_bk_end::Int64 = 0
+    dist_fd_start::Int64 = 0
+    dist_fd_end::Int64 = 0
 
     function Sidewalk(
-        width, 
-        thickness, 
-        density, 
-        dist_bk_start, 
-        dist_bk_end, 
-        dist_fd_start, 
-        dist_fd_end
+        width = 0.0ft, 
+        thickness = 0.0inch, 
+        density = 0.15kcf, 
+        dist_bk_start = 0, 
+        dist_bk_end = 0, 
+        dist_fd_start = 0, 
+        dist_fd_end = 0
         )
         new(
             width       |> to_ft, 
-            thickness   |> to_ft, 
+            thickness   |> to_inch, 
             density     |> to_kcf, 
             dist_bk_start   |> to_int, 
             dist_bk_end     |> to_int, 

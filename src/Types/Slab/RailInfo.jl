@@ -11,7 +11,7 @@ Contains information for the rails of a bridge.
 - `rail_left::Rail` - left rail on the bridge
 - `rail_right::Rail` - right rail on the bridge
 - `rail_3rd::Rail = Rail(RailType.None)` - 3rd rail on the bridge (if any)
-- `dist_outside_to_all::Bool = False` - whether to distribute outside rail to all beams
+- `dist_outside_to_all::Bool = false` - whether to distribute outside rail to all beams
 - `dist_bk_start::Int64 = 0` - back span start beam to distribute 3rd rail
 - `dist_bk_end::Int64 = 0` - back span end beam to distribute 3rd rail
 - `dist_fd_start::Int64 = 0` - fwd span start beam to distribute 3rd rail
@@ -23,7 +23,7 @@ RailInfo(
     rail_left,
     rail_right,
     rail_3rd = Rail(RailType.None),
-    dist_outside_to_all::Bool = False,
+    dist_outside_to_all::Bool = false,
     dist_bk_start = 0,
     dist_bk_end = 0,
     dist_fd_start = 0,

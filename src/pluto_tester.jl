@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.43
+# v0.19.45
 
 using Markdown
 using InteractiveUtils
@@ -45,20 +45,18 @@ md"Girder Type: $(@bind bk_span_girder Select(collect(instances(GirderType.T))))
 md"Number of Girders: $(@bind n_bk_bms NumberField(0:100, default=5))"
 
 # ╔═╡ 2c80eac5-815b-4e8c-bc5b-a0800f66e9e9
-md"Girder Spacing: $(@bind bk_bms_spa TextField()) ft"
+md"Girder Spacing: $(@bind bk_bms_spa TextField(default=\"8\")) ft"
 
 # ╔═╡ 151db26d-8ced-4b25-8dd0-077e73fd6b3f
-md"Back Span Width: $(@bind bk_span_width TextField()) ft"
+md"Back Span Width: $(@bind bk_span_width TextField(default=\"40\")) ft"
 
 # ╔═╡ 4a06fac2-184e-4fae-8566-c82cbc23bcfb
-md"Back Span Length: $(@bind bk_span_length TextField()) ft"
+md"Back Span Length: $(@bind bk_span_length TextField(default=\"100\")) ft"
 
 # ╔═╡ b9f967a2-0de6-4e51-bf4f-98f8a18bf516
 bk_girder = Girder(bk_span_girder);
 
 # ╔═╡ 33f48a89-6524-43d9-bde5-12ab21b04240
-# ╠═╡ disabled = true
-#=╠═╡
 bk = init_simple_span(
 	width= bk_span_width,
 	length=bk_span_length,
@@ -66,13 +64,9 @@ bk = init_simple_span(
 	n_girders=n_bk_bms,
 	spacing=bk_bms_spa
 );
-  ╠═╡ =#
 
 # ╔═╡ 256e98cf-675a-4c4a-9cc9-64a5a027269f
-# ╠═╡ disabled = true
-#=╠═╡
 plot(bk)
-  ╠═╡ =#
 
 # ╔═╡ 166f0092-517e-460e-87c5-e4fd40a78647
 BearingPad(3, 5.5, 10)
@@ -103,7 +97,7 @@ gi = GirderInfo(
 )
 
 # ╔═╡ d841cb1d-eb05-4814-9544-917d2899e1e8
-x, y = girder_points(gi)
+x, y = points(gi)
 
 # ╔═╡ bb672773-ddfe-420e-9419-23a6d2ca4aae
 sequence(1, 5, 0ft, 0ft)
@@ -129,6 +123,12 @@ RailInfo(
 	Rail("SSTR"),
 	Rail(RailType.T222),
 )
+
+# ╔═╡ 55580e12-7b8d-4e18-a02f-1017a89fc5a1
+Sidewalk(10, 4)
+
+# ╔═╡ 6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
+Slab(width=40, cross_slope=0.02)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -447,5 +447,7 @@ version = "17.4.0+2"
 # ╠═0ecb7adb-a160-4130-93e5-b7fb3c420476
 # ╠═10e22cd7-81eb-47a8-bdc2-fe9f2c98410d
 # ╠═3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
+# ╠═55580e12-7b8d-4e18-a02f-1017a89fc5a1
+# ╠═6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

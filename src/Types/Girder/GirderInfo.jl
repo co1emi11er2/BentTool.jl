@@ -117,11 +117,11 @@ function Base.show(io::IO, x::GirderInfo)
 end
 
 """
-    girder_points(g::GirderInfo)
+    points(g::GirderInfo)
 
 Determines the points of the girders to be plotted.
 """
-function girder_points(g::GirderInfo)
+function points(g::GirderInfo)
 
     # girder info
     type = g.girder.type
