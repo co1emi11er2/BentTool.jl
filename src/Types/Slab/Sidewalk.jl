@@ -62,7 +62,7 @@ Sidewalk
     dist_fd_end::Int64 = 0
 
     function Sidewalk(
-        width = 0.0ft, 
+        width, 
         thickness = 0.0inch, 
         density = 0.15kcf, 
         dist_bk_start = 0, 
