@@ -2,7 +2,7 @@ Base.@kwdef struct RectangularBentCap{T<:ColumnInfo} <: BentCap
     length::float_ft 
     width::float_inch
     depth::float_inch
-    bk_bm1_to_cap_end::float_ft
+    bk_bm1_to_cap_end::float_ft # TODO: Change to spacing from left edge of slab
     fd_bm1_to_cap_end::float_ft
     bar_a_info::BarAInfo
     bar_b_info::BarBInfo
