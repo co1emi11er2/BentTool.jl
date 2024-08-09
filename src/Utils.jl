@@ -4,12 +4,13 @@
 The sequence function allows you to generate a list of sequential numbers in an array, such as 1, 2, 3, 4.
 
 # Parameters
-- `rows`::Int - number of rows in the matrix
-- `columns`::Int - number of columns in the matrix
+- `rows::Int` - number of rows in the matrix
+- `columns::Int` - number of columns in the matrix
 - `start` - starting point of sequence
 - `step` - stepping increment in sequence
 """
-function sequence(rows::Integer, columns::Integer, start=1.0, step=1.0)
+function sequence(rows::Integer, columns::Integer=1, start=1.0, step=1.0)
+
     # initialize array and step through
     a = ones(Float64, rows, columns) * start
     iter = 0.0 * start
@@ -25,16 +26,16 @@ end
 
 
 """
-    sequence(rows::Int, start=1.0, step=1.0)
+    vsequence(rows::Int, start=1.0, step=1.0)
 
-The sequence function allows you to generate a list of sequential numbers in an array, such as 1, 2, 3, 4.
+The vsequence function allows you to generate a list of sequential numbers in an array, such as 1, 2, 3, 4.
 
 # Parameters
 - `rows`::Int - number of rows in the matrix
 - `start` - starting point of sequence
 - `step` - stepping increment in sequence
 """
-function sequence(rows::Integer, start=1.0, step=1.0)
+function vsequence(rows::Integer, start=1.0, step=1.0)
     # initialize array and step through
     a = ones(Float64, rows) * start
     iter = 0.0 * start

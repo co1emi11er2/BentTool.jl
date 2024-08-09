@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.42
+# v0.19.43
 
 using Markdown
 using InteractiveUtils
@@ -129,6 +129,15 @@ Sidewalk(10, 4)
 
 # ╔═╡ 6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
 Slab(width=40, cross_slope=0.02)
+
+# ╔═╡ 172de44b-639f-46a2-bb53-34a29fbf786d
+let 
+	x, y = points(gi)
+	middle.(x)
+end
+
+# ╔═╡ 809b6b7b-50ce-4fb6-bafc-09798f83d148
+points(gi)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -449,5 +458,7 @@ version = "17.4.0+2"
 # ╠═3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
 # ╠═55580e12-7b8d-4e18-a02f-1017a89fc5a1
 # ╠═6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
+# ╠═172de44b-639f-46a2-bb53-34a29fbf786d
+# ╠═809b6b7b-50ce-4fb6-bafc-09798f83d148
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

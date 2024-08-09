@@ -8,8 +8,8 @@
 Contains information for the slab of a bridge.
 
 # Fields
-- `slab::Slab` - Slab of span
-- `girder_info` - girder information for the span
+- `slab::Slab` - slab of span
+- `girder_info::GirderInfo` - girder information for the span
 - `length` -  length of the span
 
 # Constuctors
@@ -86,7 +86,7 @@ function Plots.plot(s::SimpleSpan)
         )
 
     # plot dimensions of girders
-    #TODO  plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
+    plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
 end
 
 function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
