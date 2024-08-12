@@ -159,7 +159,7 @@ function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
     col_xs = [col .- x_offset for col in col_xs]
 
     ## adjust y dimensions
-    y_offset = y_offset - cap.depth
+    y_offset = y_offset + cap.depth
     col_ys = [col .- y_offset for col in col_ys]
 
 
@@ -177,3 +177,13 @@ function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
     end
     plt
 end
+
+function ix(cap::RectangularBentCap)
+    Ix = ix_rectangle(cap.width, cap.depth)
+    return Ix
+end
+
+function ix_rectangle(b, h)
+    Ix = b*h^3/12
+end
+
