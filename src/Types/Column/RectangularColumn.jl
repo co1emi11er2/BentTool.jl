@@ -39,3 +39,13 @@ RectangularColumn
 end
 
 Base.show(io::IO, ::MIME"text/plain", x::RectangularColumn) = custom_show(io, x)
+
+function points(col::RectangularColumn)
+    x = [0.0ft, col.width, col.width, 0.0ft, 0.0ft]
+    y = [0.0ft, 0.0ft, -5.0ft, -5.0ft, 0.0inch]
+
+    # center x values on zero
+    x_offset = col.width/2
+    x = x .- x_offset
+    return x, y
+end

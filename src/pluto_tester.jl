@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.43
+# v0.19.45
 
 using Markdown
 using InteractiveUtils
@@ -23,14 +23,42 @@ using PlutoUI
 # ╔═╡ e37756e6-fe26-4c95-b757-4d58daa3a28f
 @fromparent import *
 
+# ╔═╡ 02ca171e-a3f3-4b54-8af0-9cdaf617b051
+md"# Bent Info"
+
 # ╔═╡ bc39e802-908b-4625-9d23-d2ba77ee00cf
-r = RectangularColumn(72, 96, 20)
+r = RectangularColumn(72, 96, 20);
 
 # ╔═╡ 3958c692-7c8a-460e-9c86-2da6e4d4295d
-c = ColumnInfo(r, 2, [10; 10])
+col_info = ColumnInfo(r, 1, [19ft]);
 
 # ╔═╡ 4e9f3434-8fa7-470e-9a9d-84c7bb35d843
-b = BarAInfo(Bar("#11"), 4, 12)
+bar_a = BarAInfo(Bar("#11"), 4, 12);
+
+# ╔═╡ 9eb99a1f-f0b0-4e14-bc54-ed70e9d2c172
+bar_b = BarBInfo(Bar("#11"), 4, 10);
+
+# ╔═╡ 393fdf30-b51f-4278-8d9b-f659bac3f95c
+bar_s = BarSInfo(Bar("#6"));
+
+# ╔═╡ d0ff71ec-e3ce-4350-83e2-6906a40f4773
+bar_t = BarTInfo(Bar("#6"), 6);
+
+# ╔═╡ d2f81f08-3b8a-430e-97e0-14dae847a045
+cap = RectangularBentCap(
+	length= 38ft,
+	width= 3.5ft,
+	depth= 3.5ft,
+	bar_a_info= bar_a,
+	bar_b_info= bar_b,
+	bar_s_info= bar_s,
+	bar_t_info= bar_t,
+	column_info= col_info,
+	offset= 1ft,
+);
+
+# ╔═╡ 9d7ca3b2-f539-4f33-ac96-0c32d4518395
+plot(cap)
 
 # ╔═╡ 361eebd5-9c88-49ce-bac4-7ebc091b52e6
 md"# Back Span"
@@ -68,76 +96,74 @@ bk = init_simple_span(
 # ╔═╡ 256e98cf-675a-4c4a-9cc9-64a5a027269f
 plot(bk)
 
+# ╔═╡ 811957bc-c77d-4a0f-8e95-5ba28f526262
+md"# Forward Span"
+
+# ╔═╡ d8ec1b05-62d3-428e-a90c-e086527fcca9
+md"## Girder Info"
+
+# ╔═╡ e107bf95-f5ee-436d-8fe7-7db4667fc003
+md"Girder Type: $(@bind fd_span_girder Select(collect(instances(GirderType.T))))"
+
+# ╔═╡ bc53ed12-8fe4-48b8-92a3-7e43d66e30d5
+md"Number of Girders: $(@bind n_fd_bms NumberField(0:100, default=5))"
+
+# ╔═╡ bf52a431-3be0-43c9-9073-d791c35bdb23
+md"Girder Spacing: $(@bind fd_bms_spa TextField(default=\"8\")) ft"
+
+# ╔═╡ f508d8c9-9d42-4cc1-9093-58f1eb8b2946
+md"Forward Span Width: $(@bind fd_span_width TextField(default=\"40\")) ft"
+
+# ╔═╡ 9157f93a-2516-4484-99da-e8e387116beb
+md"Forward Span Length: $(@bind fd_span_length TextField(default=\"100\")) ft"
+
+# ╔═╡ 9029d22c-7152-4a5e-9da7-8233dccf1979
+fd_girder = Girder(fd_span_girder);
+
+# ╔═╡ fe64926f-b4df-4215-95f3-60385db65a67
+fd = init_simple_span(
+	width= fd_span_width,
+	length=fd_span_length,
+	girder_type=fd_span_girder,
+	n_girders=n_fd_bms,
+	spacing=fd_bms_spa
+);
+
+# ╔═╡ ca3eae16-d17b-41e2-85ed-3797482b4205
+plot(fd)
+
+# ╔═╡ 5b41d113-43f3-4e7e-9697-bf2c7a5f4ccd
+md"# Other Info"
+
 # ╔═╡ 166f0092-517e-460e-87c5-e4fd40a78647
 BearingPad(3, 5.5, 10)
-
-# ╔═╡ 31ddbccb-e69a-401c-b1f4-cd31831a968b
-struct MyType
-	a
-	b
-end
-
-# ╔═╡ 73de7da9-c23a-47f4-8bae-2978b56f62d9
-Base.show(io::IO, ::MIME"text/plain", x::MyType) = print(io, "a: $(x.a), b: $(x.b)")
-
-# ╔═╡ 8441e1f4-240a-4dc8-9ae3-090f9f7d96da
-mytype = MyType(5, 6)
-
-# ╔═╡ 6c6dbcb2-51e5-4f9c-b9a6-530386d74a2b
-Girder(GirderType.Tx54, haunch_height = 2)
-
-# ╔═╡ 764ea749-8eaa-48e9-a9ac-4da587a3637f
-sequence(1, 4, 8, 0)
-
-# ╔═╡ b258bd33-adac-4991-8824-7e6405526a31
-gi = GirderInfo(
-	Girder("Tx54"),
-	5,
-	[3, sequence(4, 1, 8, 0)...],
-)
-
-# ╔═╡ d841cb1d-eb05-4814-9544-917d2899e1e8
-x, y = points(gi)
-
-# ╔═╡ bb672773-ddfe-420e-9419-23a6d2ca4aae
-sequence(1, 5, 0ft, 0ft)
-
-# ╔═╡ cd440ea7-5273-447b-8866-81dadede84da
-gi2 = GirderInfo(
-	Girder("Tx54"),
-	5,
-	[3, sequence(4, 1, 8, 0)...],
-)
-
-# ╔═╡ 0ecb7adb-a160-4130-93e5-b7fb3c420476
-let 
-x = 3.33333ft
-print( x)
-end
 
 # ╔═╡ 10e22cd7-81eb-47a8-bdc2-fe9f2c98410d
 Rail(RailType.T222)
 
 # ╔═╡ 3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
-RailInfo(
+ri = RailInfo(
 	Rail("SSTR"),
 	Rail(RailType.T222),
 )
 
 # ╔═╡ 55580e12-7b8d-4e18-a02f-1017a89fc5a1
-Sidewalk(10, 4)
+sw = Sidewalk(10, 4)
 
-# ╔═╡ 6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
-Slab(width=40, cross_slope=0.02)
+# ╔═╡ 8063ee09-c22f-4a6f-a750-043947a972a7
+su = SimpleUnit(
+	bk=bk,
+	fd=fd,
+	bent=cap,
+	pgl=PGL(),
+	rail=ri,
+	sw=sw,
+	has_super=false,
+	dsgn_speed=40mph
+);
 
-# ╔═╡ 172de44b-639f-46a2-bb53-34a29fbf786d
-let 
-	x, y = points(gi)
-	middle.(x)
-end
-
-# ╔═╡ 809b6b7b-50ce-4fb6-bafc-09798f83d148
-points(gi)
+# ╔═╡ 0f087d73-a2af-49f7-a305-dce4d6ebc557
+plot(su)
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -430,9 +456,15 @@ version = "17.4.0+2"
 # ╠═6ebb9872-4546-11ef-1d4c-99c410d6ad32
 # ╠═eba25020-e654-4652-a904-fce97293999d
 # ╠═e37756e6-fe26-4c95-b757-4d58daa3a28f
+# ╟─02ca171e-a3f3-4b54-8af0-9cdaf617b051
 # ╠═bc39e802-908b-4625-9d23-d2ba77ee00cf
 # ╠═3958c692-7c8a-460e-9c86-2da6e4d4295d
 # ╠═4e9f3434-8fa7-470e-9a9d-84c7bb35d843
+# ╠═9eb99a1f-f0b0-4e14-bc54-ed70e9d2c172
+# ╠═393fdf30-b51f-4278-8d9b-f659bac3f95c
+# ╠═d0ff71ec-e3ce-4350-83e2-6906a40f4773
+# ╠═d2f81f08-3b8a-430e-97e0-14dae847a045
+# ╠═9d7ca3b2-f539-4f33-ac96-0c32d4518395
 # ╟─361eebd5-9c88-49ce-bac4-7ebc091b52e6
 # ╟─c2caf497-7b60-4ec3-bf52-5267ecf726e4
 # ╟─b584b442-367e-401c-ada3-7d57504a14b2
@@ -443,22 +475,22 @@ version = "17.4.0+2"
 # ╟─b9f967a2-0de6-4e51-bf4f-98f8a18bf516
 # ╟─33f48a89-6524-43d9-bde5-12ab21b04240
 # ╟─256e98cf-675a-4c4a-9cc9-64a5a027269f
+# ╟─811957bc-c77d-4a0f-8e95-5ba28f526262
+# ╟─d8ec1b05-62d3-428e-a90c-e086527fcca9
+# ╟─e107bf95-f5ee-436d-8fe7-7db4667fc003
+# ╟─bc53ed12-8fe4-48b8-92a3-7e43d66e30d5
+# ╟─bf52a431-3be0-43c9-9073-d791c35bdb23
+# ╟─f508d8c9-9d42-4cc1-9093-58f1eb8b2946
+# ╟─9157f93a-2516-4484-99da-e8e387116beb
+# ╟─9029d22c-7152-4a5e-9da7-8233dccf1979
+# ╟─fe64926f-b4df-4215-95f3-60385db65a67
+# ╟─ca3eae16-d17b-41e2-85ed-3797482b4205
+# ╟─5b41d113-43f3-4e7e-9697-bf2c7a5f4ccd
 # ╠═166f0092-517e-460e-87c5-e4fd40a78647
-# ╠═31ddbccb-e69a-401c-b1f4-cd31831a968b
-# ╠═73de7da9-c23a-47f4-8bae-2978b56f62d9
-# ╠═8441e1f4-240a-4dc8-9ae3-090f9f7d96da
-# ╠═6c6dbcb2-51e5-4f9c-b9a6-530386d74a2b
-# ╠═764ea749-8eaa-48e9-a9ac-4da587a3637f
-# ╠═b258bd33-adac-4991-8824-7e6405526a31
-# ╠═d841cb1d-eb05-4814-9544-917d2899e1e8
-# ╠═bb672773-ddfe-420e-9419-23a6d2ca4aae
-# ╠═cd440ea7-5273-447b-8866-81dadede84da
-# ╠═0ecb7adb-a160-4130-93e5-b7fb3c420476
 # ╠═10e22cd7-81eb-47a8-bdc2-fe9f2c98410d
 # ╠═3b0b5cf7-826a-4ec3-8e09-0ac848bc8b8b
 # ╠═55580e12-7b8d-4e18-a02f-1017a89fc5a1
-# ╠═6ec56d96-7a1e-4712-897f-a8ef6c4cdcdc
-# ╠═172de44b-639f-46a2-bb53-34a29fbf786d
-# ╠═809b6b7b-50ce-4fb6-bafc-09798f83d148
+# ╠═8063ee09-c22f-4a6f-a750-043947a972a7
+# ╠═0f087d73-a2af-49f7-a305-dce4d6ebc557
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

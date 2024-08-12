@@ -34,3 +34,13 @@ CircularColumn
 end
 
 Base.show(io::IO, x::CircularColumn) = custom_show(io, x)
+
+function points(col::CircularColumn)
+    x = [0.0ft, col.diameter, col.diameter, 0.0ft, 0.0ft]
+    y = [0.0ft, 0.0ft, -5.0ft, -5.0ft, 0.0inch]
+
+    # center x values on zero
+    x_offset = col.diameter/2
+    x = x .- x_offset
+    return x, y
+end

@@ -73,3 +73,19 @@ function Base.show(io::IO, x::ColumnInfo)
     """
     print(io, s)
 end
+
+function points(col_info::ColumnInfo)
+    # pull points for column
+    x, y = points(col_info.column)
+
+    # create points for each column
+    cuml_spacing = cumsum(col_info.spacing)
+    x_points = x .+ transpose(cuml_spacing)
+    y_points = y .+ sequence(1, col_info.n_columns, 0ft, 0ft)
+
+    # convert points to vector of vectors
+    x_points = Vector{eltype(x_points)}[eachcol(x_points)...]
+    y_points = Vector{eltype(y_points)}[eachcol(y_points)...]
+
+    return x_points, y_points
+end
