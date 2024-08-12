@@ -34,7 +34,7 @@ function Base.string(bar::BarSize.T)
 end
 
 """
-    bar_type(bar::String)
+    bar_type(bar::String) -> BarSize.T
 
 If bar is of type *String*, the function will output the corresponding bar designation in enum format.
 """
@@ -56,18 +56,18 @@ end
 bar_size(bar::BarSize.T) = bar
 
 """
-```
-struct Bar
-```
+    struct Bar
+
+An ASTM standard reinforcing bar.
 
 # Fields
-- `size`::BarSize.T
-- `area`::float_inch2
-- `weight`::float_plf
-- `diameter`::float_inch
-- `ld`::float_inch - development length of the rebar
+- `size::BarSize.T`
+- `area::float_inch2`
+- `weight::float_plf`
+- `diameter::float_inch`
+- `ld::float_inch` - development length of the rebar
 """
-@with_kw struct Bar
+@with_kw_noshow struct Bar
     size::BarSize.T
     area::float_inch2
     weight::float_plf
@@ -86,9 +86,32 @@ struct Bar
 end
 
 """
-    Bar(size::BarSize.T)
+    Bar(size::BarSize.T) -> Bar
+    Bar(size::String) -> Bar
 
 Given bar size, a `Bar` struct is initialized.
+
+# Arguments
+- `size::BarSize.T` or `size::String` - size of rebar.
+
+# Examples
+```julia-repl
+julia> Bar("#11")
+Bar
+  size: n11
+  area: 1.563 inch^2
+  weight: 5.313 plf
+  diameter: 1.41 inch
+  ld: 48.16 inch
+
+julia> Bar(BarSize.n11)
+Bar
+  size: n11
+  area: 1.563 inch^2
+  weight: 5.313 plf
+  diameter: 1.41 inch
+  ld: 48.16 inch
+```
 """
 function Bar(size::BarSize.T)
     csv_file_name = "Bars.csv"
@@ -104,33 +127,6 @@ function Bar(size::BarSize.T)
         ld = bar.ld
     )
 end
+Bar(size::String) = Bar(bar_size(size))
 
-
-
-@with_kw struct BarsBInfo
-    bar::Bar
-    dist_btwn_rows::float_inch
-    n_row1::Int8
-    n_row2::Int8 = 0
-    n_row3::Int8 = 0
-
-    function BarsBInfo(bar, dist_btwn_rows, n_row1, n_row2, n_row3)
-        new(
-            bar,
-            dist_btwn_rows |> to_inch,
-            n_row1,
-            n_row2,
-            n_row3,
-        )
-    end
-end
-
-@with_kw struct BarsSInfo
-    bar::Bar
-    n_bundle::Int8
-end
-
-@with_kw struct BarsTInfo
-    bar::Bar
-    n_bars_face::Int8
-end
+Base.show(io::IO, x::Bar) = custom_show(io, x)

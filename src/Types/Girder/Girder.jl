@@ -18,7 +18,7 @@
     A
     B
     C
-    Type54
+    # Type54
 end
 
 
@@ -30,9 +30,45 @@ If girder is of type *Sting*, the function will output the corresponding girder 
 function girder_type(girder::String)
     getproperty(GirderType, Symbol(girder))
 end
+girder_type(girder::GirderType.T) = girder
 
+"""
+    struct Girder
 
-@with_kw struct Girder
+# Fields
+`type::GirderType.T ` - specific girder type
+`haunch_height::float_inch` - max haunch of girder
+`depth::float_inch` - depth of girder
+`bott_flange_width::float_inch` - bottom flange width of girder
+`weight::float_plf` - weight of girder
+
+# Constructors
+```
+Girder(type::GirderType.T; haunch_height = 3.0inch) -> Girder
+Girder(type::String; haunch_height = 3.0inch) -> Girder
+```
+
+# Examples
+```julia-repl
+julia> Girder("Tx54")
+Girder
+  type: Tx54
+  haunch_height: 3.0 inch
+  depth: 54.0 inch
+  bott_flange_width: 32.0 inch
+  weight: 880.0 plf
+
+julia> Girder(GirderType.Tx54, haunch_height = 2)
+Girder
+  type: Tx54
+  haunch_height: 2.0 inch
+  depth: 54.0 inch
+  bott_flange_width: 32.0 inch
+  weight: 880.0 plf
+
+```
+"""
+@with_kw_noshow struct Girder
     type::GirderType.T 
     haunch_height::float_inch
     depth::float_inch
@@ -64,3 +100,8 @@ function Girder(type::GirderType.T; haunch_height = 3.0inch)
         weight = girder.weight_plf
     )
 end
+function Girder(type::String; haunch_height = 3.0inch)
+    Girder(girder_type(type); haunch_height = haunch_height)
+end
+
+Base.show(io::IO, x::Girder) = custom_show(io, x)

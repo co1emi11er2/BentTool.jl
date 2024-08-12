@@ -62,19 +62,57 @@ function rail_type(rail::String)
 end
 rail_type(rail::RailType.T) = rail
 
-@with_kw struct Rail
+"""
+    struct Rail
+    
+The Rail of a bridge.
+
+# Fields
+- `type::RailType.T` - type of the rail
+- `height::float_inch` - height of the rail
+- `width::float_ft` - width of the rail
+- `weight::float_plf` - weight of the rail
+
+# Constructors
+```
+Rail(type::RailType.T) -> Rail
+Rail(type::String) -> Rail
+```
+
+# Examples
+```julia-repl
+julia> Rail("SSTR)
+Rail
+  type: SSTR
+  height: 36.0 inch
+  width: 1.0 ft
+  weight: 376.0 plf
+
+julia> Rail(RailType.SSTR)
+Rail
+  type: SSTR
+  height: 36.0 inch
+  width: 1.0 ft
+  weight: 376.0 plf
+```
+"""
+@with_kw_noshow struct Rail
     type::RailType.T
     height::float_inch
     width::float_ft
     weight::float_plf
+
+    function Rail(type, height, width, weight)
+        new(
+            type |> rail_type,
+            height |> to_inch,
+            width |> to_ft,
+            weight |> to_plf
+        )
+    end
 end
 
-"""
-    Rail(type)
-
-Will construct a Rail object based on the type.
-"""
-function Rail(type::RailType.T)
+function Rail(type)
     # initialize dataframe
     csv_file_name = "Rails.csv"
     lookup_col_name = :type
@@ -90,4 +128,4 @@ function Rail(type::RailType.T)
         )
 end
 
-
+Base.show(io::IO, x::Rail) = custom_show(io, x)

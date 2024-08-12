@@ -11,7 +11,7 @@ using StructuralUnits
 using Plots
 
 # Package Exports
-export GirderType, Girder, BearingPad, Pedestal, GirderInfo, init_girder_info
+export GirderType, Girder, BearingPad, Pedestal, GirderInfo
 export Slab, PGL, RailType, Rail, RailInfo, Sidewalk
 export SimpleSpan, init_simple_span, SimpleUnit, plot
 

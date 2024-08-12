@@ -1,10 +1,30 @@
-@with_kw struct SimpleSpan <: Span
+# ----------------
+# SIMPLE SPAN
+# ----------------
+
+"""
+    struct SimpleSpan
+
+Contains information for the slab of a bridge.
+
+# Fields
+- `slab::Slab` - slab of span
+- `girder_info::GirderInfo` - girder information for the span
+- `length` -  length of the span
+
+# Constuctors
+```
+SimpleSpan(slab, girder_info, length)
+SimpleSpan(; slab, girder_info, length)
+```
+"""
+@with_kw_noshow struct SimpleSpan <: Span
     slab::Slab
     girder_info::GirderInfo
-    osoh_left::float_ft
-    osoh_right::float_ft
     length::float_ft
 end
+
+Base.show(io::IO, x::SimpleSpan) = custom_show(io, x)
 
 
 """
@@ -14,7 +34,9 @@ Given the slab width, span length, girder type, number of girders, spacing of gi
 
 """
 function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
-
+    width = width |> to_ft
+    length = length |> to_ft
+    spacing = spacing |> to_ft
     # set spacing to proper size
     if size(spacing) == ()
         spacing = vec(sequence(n_girders-1, 1, spacing, 0.0ft))
@@ -24,18 +46,15 @@ function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::
     total_spacing = sum(spacing)
     osoh = (width - total_spacing)/2
     slab = Slab(width=width)
-    girder_info = init_girder_info(
-        type = girder_type, 
-        n_girders = n_girders, 
-        osoh_left = osoh, 
-        spacing = spacing,
-        haunch_height = haunch_height
+    girder_info = GirderInfo(
+        Girder(girder_type; haunch_height = haunch_height), 
+        n_girders, 
+        [osoh, spacing...],
         )
+
     return SimpleSpan(
         slab = slab,
         girder_info = girder_info,
-        osoh_left = osoh,
-        osoh_right = osoh,
         length = length,
     )
 end
@@ -44,9 +63,10 @@ end
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
 function Plots.plot(s::SimpleSpan)
     # plot girders
+    girder_xs, girder_ys = points(s.girder_info)
     plot(
-        s.girder_info.x_points, 
-        s.girder_info.y_points; 
+        girder_xs, 
+        girder_ys; 
         aspectratio=:equal, 
         lc=:black, 
         legend=:none,
@@ -56,8 +76,7 @@ function Plots.plot(s::SimpleSpan)
         )
 
     # plot slab
-    x = [0.0ft, s.slab.width, s.slab.width, 0.0ft, 0.0ft]
-    y = [0.0inch, 0.0inch, s.slab.thickness, s.slab.thickness, 0.0inch]
+    x, y = points(s.slab)
     plot!(
         x, 
         y; 
@@ -67,7 +86,7 @@ function Plots.plot(s::SimpleSpan)
         )
 
     # plot dimensions of girders
-    plot_h_dimensions!(s.girder_info.x_points, s.girder_info.y_points; error=3inch)
+    plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
 end
 
 function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
