@@ -72,3 +72,29 @@ function points(slab::Slab)
     y = [0.0inch, 0.0inch, slab.thickness, slab.thickness, 0.0inch]
     return x, y
 end
+
+@recipe function f(slab::Slab;)
+    linecolor   --> :black
+    seriestype  :=  :shape
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
+
+
+    # @series begin
+    #     # force an argument with `:=`
+    #     seriestype := :path
+    #     # ignore series in legend and color cycling
+    #     primary := false
+    #     linecolor := nothing
+    #     fillcolor := :lightgray
+    #     fillalpha := 0.5
+    #     # ensure no markers are shown for the error band
+    #     markershape := :none
+    #     # return series data
+    #     Shape(m.a, m.b)
+    # end
+    x_points, y_points = points(slab)
+    y_points = y_points .|> ft
+    x_points, y_points
+end

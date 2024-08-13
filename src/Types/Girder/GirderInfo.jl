@@ -147,3 +147,26 @@ function points(g::GirderInfo)
 
     return x_points, y_points
 end
+
+@recipe function f(girder_info::GirderInfo;)
+    linecolor   --> :black
+    seriestype  :=  :shape
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
+
+    # @series begin
+    #     # force an argument with `:=`
+    #     seriestype := :path
+    #     # ignore series in legend and color cycling
+    #     primary := false
+    #     linecolor := nothing
+    #     fillcolor := :lightgray
+    #     fillalpha := 0.5
+    #     # ensure no markers are shown for the error band
+    #     markershape := :none
+    #     # return series data
+    #     Shape(m.a, m.b)
+    # end
+    x_points, y_points = points(girder_info)
+end

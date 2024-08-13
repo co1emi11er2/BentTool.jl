@@ -133,7 +133,62 @@ function points(cap::RectangularBentCap)
     return x, y
 end
 
-function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
+# function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
+#     # plot cap
+#     cap_xs, cap_ys = points(cap)
+
+#     ## adjust points for x and y offset
+#     cap_xs = cap_xs .- x_offset
+#     cap_xs = cap_xs .- x_offset
+
+#     plt = plot(
+#         cap_xs, 
+#         cap_ys; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         xlabel="",
+#         ylabel="",
+#         dpi = 500,
+#         )
+
+#     # plot columns
+#     col_xs, col_ys = points(cap.column_info)
+
+#     ## adjust x dimensions
+#     col_xs = [col .- x_offset for col in col_xs]
+
+#     ## adjust y dimensions
+#     y_offset = y_offset + cap.depth
+#     col_ys = [col .- y_offset for col in col_ys]
+
+
+#     plot!(
+#         col_xs, 
+#         col_ys; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         )
+
+#     # plot dimensions of girders
+#     if cap.column_info.n_columns != 1
+#         plot_h_dimensions!(col_xs, col_ys; error=3inch)
+#     end
+#     plt
+# end
+
+@recipe function f(cap::RectangularBentCap;)
+    linecolor   --> :black
+    seriestype  :=  :shape
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
+
+    x_offset = 0.0ft
+    y_offset = 0.0ft
+    
+    @series begin
     # plot cap
     cap_xs, cap_ys = points(cap)
 
@@ -141,16 +196,8 @@ function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
     cap_xs = cap_xs .- x_offset
     cap_xs = cap_xs .- x_offset
 
-    plt = plot(
-        cap_xs, 
-        cap_ys; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        xlabel="",
-        ylabel="",
-        dpi = 500,
-        )
+    cap_xs, cap_ys
+    end
 
     # plot columns
     col_xs, col_ys = points(cap.column_info)
@@ -162,20 +209,7 @@ function Plots.plot(cap::RectangularBentCap, x_offset=0.0ft, y_offset=0.0ft)
     y_offset = y_offset + cap.depth
     col_ys = [col .- y_offset for col in col_ys]
 
-
-    plot!(
-        col_xs, 
-        col_ys; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        )
-
-    # plot dimensions of girders
-    if cap.column_info.n_columns != 1
-        plot_h_dimensions!(col_xs, col_ys; error=3inch)
-    end
-    plt
+    col_xs, col_ys
 end
 
 function ix(cap::RectangularBentCap)

@@ -61,38 +61,52 @@ end
 
 
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
-function Plots.plot(s::SimpleSpan)
-    # plot girders
-    girder_xs, girder_ys = points(s.girder_info)
-    plot(
-        girder_xs, 
-        girder_ys; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        xlabel="",
-        ylabel="",
-        dpi = 500,
-        )
+# function Plots.plot(s::SimpleSpan)
+#     # plot girders
+#     girder_xs, girder_ys = points(s.girder_info)
+#     plot(
+#         girder_xs, 
+#         girder_ys; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         xlabel="",
+#         ylabel="",
+#         dpi = 500,
+#         )
 
-    # plot slab
-    x, y = points(s.slab)
-    plot!(
-        x, 
-        y; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        )
+#     # plot slab
+#     x, y = points(s.slab)
+#     plot!(
+#         x, 
+#         y; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         )
 
-    # plot dimensions of girders
-    plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
-end
+#     # plot dimensions of girders
+#     plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
+# end
 
-function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
-    plt1 = plot(bk)
-    title!("Back Span")
-    plt2 = plot(fd)
-    title!("Forward Span")
-    plot(plt1, plt2, layout = grid(2, 1), dpi=500)
+# function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
+#     plt1 = plot(bk)
+#     title!("Back Span")
+#     plt2 = plot(fd)
+#     title!("Forward Span")
+#     plot(plt1, plt2, layout = grid(2, 1), dpi=500)
+# end
+
+@recipe function f(ss::SimpleSpan;)
+    linecolor   --> :black
+    seriestype  :=  :shape
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
+
+
+    @series begin
+       ss.slab
+    end
+    ss.girder_info
 end

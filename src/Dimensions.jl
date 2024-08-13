@@ -155,28 +155,28 @@ end
 Plots the dimensions of a linearly spaced set of objects with points `xs` and `ys`. 
 Each column in `xs` and `ys` represents a new object.
 """
-function plot_h_dimensions!(
-    xs::Vector{Vector{T}}, 
-    ys::Vector{Vector{S}}; 
-    error = 1, 
-    lc = :grey, 
-    offset = zero(S),
-    ) where T where S
+# function plot_h_dimensions!(
+#     xs::Vector{Vector{T}}, 
+#     ys::Vector{Vector{S}}; 
+#     error = 1, 
+#     lc = :grey, 
+#     offset = zero(S),
+#     ) where T where S
 
-    x_dims = middle.(xs)
-    y_dims = middle.(ys)
-    y_dims = y_dims .+ offset
-    plot!(x_dims, y_dims; yerror=error, lc, ms=0inch, mc=lc)
+#     x_dims = middle.(xs)
+#     y_dims = middle.(ys)
+#     y_dims = y_dims .+ offset
+#     plot!(x_dims, y_dims; yerror=error, lc, ms=0inch, mc=lc)
 
-    # plot annotations
-    fntcm = "Courier"
-    fntsz = 4
-    x_lbls = find_midpoints(x_dims)
-    y_lbls = find_midpoints(y_dims)
-    spa = round.(T, find_spacing(x_dims), digits=2)
-    annos = string.(spa)
-    n = length.(annos)
-    blanks = vcat("█".^n #=.* "█"=#)
-    annotate!(x_lbls, y_lbls, text.(blanks,:white, #=fntcm,=# fntsz))
-    annotate!(x_lbls, y_lbls, text.(annos, :grey, #=fntcm,=# fntsz))
-end
+#     # plot annotations
+#     fntcm = "Courier"
+#     fntsz = 4
+#     x_lbls = find_midpoints(x_dims)
+#     y_lbls = find_midpoints(y_dims)
+#     spa = round.(T, find_spacing(x_dims), digits=2)
+#     annos = string.(spa)
+#     n = length.(annos)
+#     blanks = vcat("█".^n #=.* "█"=#)
+#     annotate!(x_lbls, y_lbls, text.(blanks,:white, #=fntcm,=# fntsz))
+#     annotate!(x_lbls, y_lbls, text.(annos, :grey, #=fntcm,=# fntsz))
+# end
