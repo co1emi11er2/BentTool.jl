@@ -16,3 +16,24 @@ end #TODO: This is where I left off. How will I distinguish single column vs mul
 # end
 
 Base.show(io::IO, x::SimpleUnit) = custom_show(io, x)
+
+@recipe function f(su::SimpleUnit;)
+    linecolor   --> :black
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
+    layout := @layout [bkspan
+                       fwdspan]
+
+
+    @series begin
+        subplot := 1
+        su.bk
+    end
+
+    @series begin
+        subplot := 2
+        su.fd
+    end
+    
+end
