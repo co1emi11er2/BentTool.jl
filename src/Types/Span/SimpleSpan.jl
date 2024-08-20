@@ -104,9 +104,14 @@ end
     legend := false
     aspect_ratio := :equal
 
-
+    # plot slab
     @series begin
        ss.slab
     end
-    ss.girder_info
+
+    # plot girders
+    @series begin
+        ss.girder_info
+     end
+    
 end
