@@ -1,3 +1,4 @@
+using StructuralUnits
 # Test find_middle function with 1 input
 let 
     a = [

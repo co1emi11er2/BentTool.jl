@@ -17,8 +17,8 @@ StructuralUnits = "ec81c399-378c-4a82-baa1-80fb2fc85b6c"
 [compat]
 julia = "1.10"
 
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+# [extras]
+# Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
-[targets]
-test = ["Test"]
+# [targets]
+# test = ["Test"]

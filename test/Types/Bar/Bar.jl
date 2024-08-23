@@ -1,3 +1,4 @@
+using StructuralUnits
 import BentTool: Bar, BarSize, bar_size
 # ----------------
 # BAR

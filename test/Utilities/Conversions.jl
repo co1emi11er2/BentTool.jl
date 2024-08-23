@@ -1,3 +1,4 @@
+using StructuralUnits
 import BentTool: to_float, to_int, to_ft, to_inch, to_inch2, to_pcf,
 to_kcf, to_plf, to_klf, to_ksi, to_mph, to_deg
 
