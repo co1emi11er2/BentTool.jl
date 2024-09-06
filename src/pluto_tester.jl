@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.42
+# v0.19.46
 
 using Markdown
 using InteractiveUtils
@@ -24,6 +24,7 @@ using PlutoUI
 using Handcalcs
 
 # ╔═╡ e37756e6-fe26-4c95-b757-4d58daa3a28f
+# ╠═╡ show_logs = false
 @fromparent import *
 
 # ╔═╡ 02ca171e-a3f3-4b54-8af0-9cdaf617b051
@@ -193,7 +194,7 @@ PlutoUI = "~0.7.59"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.10.4"
+julia_version = "1.10.5"
 manifest_format = "2.0"
 project_hash = "dcddde82c693d6043c3d3f0636ef2317aec6cb7e"
 
@@ -1265,7 +1266,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.8.0+1"
+version = "5.11.0+0"
 
 [[deps.libevdev_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -1354,7 +1355,7 @@ version = "1.4.1+1"
 # ╟─151db26d-8ced-4b25-8dd0-077e73fd6b3f
 # ╟─4a06fac2-184e-4fae-8566-c82cbc23bcfb
 # ╟─b9f967a2-0de6-4e51-bf4f-98f8a18bf516
-# ╟─33f48a89-6524-43d9-bde5-12ab21b04240
+# ╠═33f48a89-6524-43d9-bde5-12ab21b04240
 # ╟─256e98cf-675a-4c4a-9cc9-64a5a027269f
 # ╟─811957bc-c77d-4a0f-8e95-5ba28f526262
 # ╟─d8ec1b05-62d3-428e-a90c-e086527fcca9

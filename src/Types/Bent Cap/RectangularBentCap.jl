@@ -178,23 +178,22 @@ end
 #     plt
 # end
 
-@recipe function f(cap::RectangularBentCap;)
+@recipe function f(cap::RectangularBentCap; x_offset = 0.0ft, y_offset=0.0ft)
     linecolor   --> :black
     seriestype  :=  :shape
     fillcolor := :lightgrey
     legend := false
     aspect_ratio := :equal
 
-    x_offset = 0.0ft
-    y_offset = 0.0ft
+   
     
     @series begin
     # plot cap
     cap_xs, cap_ys = points(cap)
 
     ## adjust points for x and y offset
-    cap_xs = cap_xs .- x_offset
-    cap_xs = cap_xs .- x_offset
+    cap_xs = cap_xs .+ x_offset
+    cap_ys = cap_ys .+ y_offset
 
     cap_xs, cap_ys
     end
@@ -203,11 +202,11 @@ end
     col_xs, col_ys = points(cap.column_info)
 
     ## adjust x dimensions
-    col_xs = [col .- x_offset for col in col_xs]
+    col_xs = [col .+ x_offset for col in col_xs]
 
     ## adjust y dimensions
-    y_offset = y_offset + cap.depth
-    col_ys = [col .- y_offset for col in col_ys]
+    y_offset = y_offset - cap.depth
+    col_ys = [col .+ y_offset for col in col_ys]
 
     col_xs, col_ys
 end
