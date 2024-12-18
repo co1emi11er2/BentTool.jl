@@ -1,4 +1,5 @@
-import BentTool: ColumnInfo
+using StructuralUnits
+import BentTool: ColumnInfo, RectangularColumn, CircularColumn
 
 # Test Rectangular column integration
 let 

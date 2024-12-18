@@ -147,3 +147,51 @@ function points(g::GirderInfo)
 
     return x_points, y_points
 end
+
+@recipe function f(girder_info::GirderInfo;dims=true, dim_color=:black)
+    
+    legend := false
+    aspect_ratio := :equal
+
+    # points for girder
+    girder_xs, girder_ys = points(girder_info)
+
+    # points for dimensions
+    dim_xs, dim_ys = h_dimensions(girder_xs, girder_ys)
+    x_lbls, y_lbls, annos = h_dimensions_labels(dim_xs, dim_ys, font_color=dim_color)
+
+    # plot girders
+    @series begin
+        linecolor --> :black
+        fillcolor := :lightgrey
+        seriestype  :=  :shape
+
+        girder_xs, girder_ys
+    end
+
+    # plot dimensions
+    if dims == true
+
+        # plot dimensions
+        @series begin
+            seriestype  :=  :path
+            linecolor := dim_color
+            markercolor := dim_color
+            yerror --> 0.25
+            markersize := 0
+            
+            dim_xs, dim_ys
+        end
+
+        # plot annotations
+        @series begin
+            seriestype:= :scatter
+            markersize := 0
+            annotations --> annos
+            x_lbls, y_lbls
+        end
+        # @series begin
+        #     
+        # end
+    end
+end

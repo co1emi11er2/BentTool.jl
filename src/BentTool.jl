@@ -8,12 +8,16 @@ using EnumX
 using Parameters
 import Statistics: middle
 using StructuralUnits
-using Plots
+using RecipesBase
+# using Plots
 
 # Package Exports
 export GirderType, Girder, BearingPad, Pedestal, GirderInfo
 export Slab, PGL, RailType, Rail, RailInfo, Sidewalk
-export SimpleSpan, init_simple_span, SimpleUnit, plot
+export SimpleSpan, init_simple_span, SimpleUnit #plot
+export RectangularColumn, ColumnInfo
+export RectangularBentCap
+export Bar, BarAInfo, BarBInfo, BarSInfo, BarTInfo
 
 # Directories
 projectdir(parts...) = normpath(joinpath(@__DIR__, "..", parts...))

@@ -1,3 +1,4 @@
+using StructuralUnits
 import BentTool: BarBInfo, Bar
 
 # ----------------

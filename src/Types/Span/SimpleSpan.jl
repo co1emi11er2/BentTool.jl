@@ -36,21 +36,29 @@ Given the slab width, span length, girder type, number of girders, spacing of gi
 function init_simple_span(;width, length, girder_type::GirderType.T, n_girders::Int, spacing, haunch_height=3inch)
     width = width |> to_ft
     length = length |> to_ft
-    spacing = spacing |> to_ft
+    spacing = spacing .|> to_ft
     # set spacing to proper size
     if size(spacing) == ()
         spacing = vec(sequence(n_girders-1, 1, spacing, 0.0ft))
-    elseif size(spacing) != (n_girders-1,)
-        error("Incorrect size of `spacing`. Got $(size(spacing)), expected $((n_girders-1,))")
-    end
-    total_spacing = sum(spacing)
-    osoh = (width - total_spacing)/2
-    slab = Slab(width=width)
-    girder_info = GirderInfo(
+        total_spacing = sum(spacing)
+        osoh = (width - total_spacing)/2
+        girder_info = GirderInfo(
         Girder(girder_type; haunch_height = haunch_height), 
         n_girders, 
         [osoh, spacing...],
         )
+    elseif size(spacing) != (n_girders,)
+        error("Incorrect size of `spacing`. Got $(size(spacing)), expected $((n_girders-1,))")
+    else
+        girder_info = GirderInfo(
+        Girder(girder_type; haunch_height = haunch_height), 
+        n_girders, 
+        [spacing...],
+        )
+    end
+
+    slab = Slab(width=width)
+
 
     return SimpleSpan(
         slab = slab,
@@ -61,38 +69,57 @@ end
 
 
 # s = init_simple_span(width=38ft, length=100ft, girder_type="Tx54", spacing=8ft, n_girders = 5)
-function Plots.plot(s::SimpleSpan)
-    # plot girders
-    girder_xs, girder_ys = points(s.girder_info)
-    plot(
-        girder_xs, 
-        girder_ys; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        xlabel="",
-        ylabel="",
-        dpi = 500,
-        )
+# function Plots.plot(s::SimpleSpan)
+#     # plot girders
+#     girder_xs, girder_ys = points(s.girder_info)
+#     plot(
+#         girder_xs, 
+#         girder_ys; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         xlabel="",
+#         ylabel="",
+#         dpi = 500,
+#         )
+
+#     # plot slab
+#     x, y = points(s.slab)
+#     plot!(
+#         x, 
+#         y; 
+#         aspectratio=:equal, 
+#         lc=:black, 
+#         legend=:none,
+#         )
+
+#     # plot dimensions of girders
+#     plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
+# end
+
+# function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
+#     plt1 = plot(bk)
+#     title!("Back Span")
+#     plt2 = plot(fd)
+#     title!("Forward Span")
+#     plot(plt1, plt2, layout = grid(2, 1), dpi=500)
+# end
+
+@recipe function f(ss::SimpleSpan;)
+    linecolor   --> :black
+    seriestype  :=  :shape
+    fillcolor := :lightgrey
+    legend := false
+    aspect_ratio := :equal
 
     # plot slab
-    x, y = points(s.slab)
-    plot!(
-        x, 
-        y; 
-        aspectratio=:equal, 
-        lc=:black, 
-        legend=:none,
-        )
+    @series begin
+       ss.slab
+    end
 
-    # plot dimensions of girders
-    plot_h_dimensions!(girder_xs, girder_ys; error=3inch)
-end
-
-function Plots.plot(bk::SimpleSpan, fd::SimpleSpan)
-    plt1 = plot(bk)
-    title!("Back Span")
-    plt2 = plot(fd)
-    title!("Forward Span")
-    plot(plt1, plt2, layout = grid(2, 1), dpi=500)
+    # plot girders
+    @series begin
+        ss.girder_info
+     end
+    
 end

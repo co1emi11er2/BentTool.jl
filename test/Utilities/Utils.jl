@@ -1,7 +1,8 @@
+using StructuralUnits
 # Test find_middle function with integer_ft
 let 
     expected = [5ft; 15ft; 25ft]
-    calc = BentTool.sequence(3, 5ft, 10ft)
+    calc = BentTool.vsequence(3, 5ft, 10ft)
     @test calc == expected
     @test_broken typeof(calc) == typeof(expected)
 end
@@ -9,7 +10,7 @@ end
 # Test sequence function with float_ft
 let 
     expected = [5.0ft; 15.0ft; 25.0ft]
-    calc = BentTool.sequence(3, 5.0ft, 10.0ft)
+    calc = BentTool.vsequence(3, 5.0ft, 10.0ft)
     @test calc == expected
     @test typeof(calc) == typeof(expected)
 end
